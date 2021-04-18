@@ -15,9 +15,13 @@ public class GameManager : Singleton<GameManager>
     public GameMode gameMode;
     public DSPlayerController player;
     public LevelManager currentLevel;
+    public ObstacleManager currentObstacle;
+    int currentLevelId = -1;
     public bool success;
     public bool finishedLevel;
     public LeaderBoard leaderBoard;
+
+    Dictionary<int, bool> isLevelPlayed = new Dictionary<int, bool>();
 
     int previousLevel = -1;
 
@@ -55,7 +59,14 @@ public class GameManager : Singleton<GameManager>
         HUD.Instance.updateHealth(currentPlayerHealth);
         HUD.Instance.updateScore(score);
     }
-
+    public bool havePlayedLevel()
+    {
+        if (isLevelPlayed.ContainsKey(currentLevelId))
+        {
+            return true;
+        }
+        return false;
+    }
     public void SelectLevelAndStart()
     {
 
@@ -87,6 +98,8 @@ public class GameManager : Singleton<GameManager>
                 looptime -= 1;
             }
             previousLevel = rand;
+            isLevelPlayed[rand] = true;
+            currentLevelId = rand;
             //SceneManager.LoadScene(rand);
             //SceneManager.LoadScene((int)gameMode + 1);
             //StartCoroutine(test(rand)); 

@@ -8,6 +8,8 @@ public class CheatManager : Singleton<CheatManager>
     public int nextLevel = -1;
     public bool infiniteHP = false;
     public bool infiniteHPInLevel = false;
+    public bool turnedOnObstacle = false;
+    public int obstacleValue = -1;
     // Start is called before the first frame update
     void Start()
     {

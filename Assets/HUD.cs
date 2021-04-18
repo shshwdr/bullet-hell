@@ -17,6 +17,7 @@ public class HUD : Singleton<HUD>
 
     [SerializeField] TMP_Text intervalLabel;
     [SerializeField] TMP_Text intervalAfterLabel;
+    [SerializeField] TMP_Text intervalAfterLabelObstacle;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +83,19 @@ public class HUD : Singleton<HUD>
         {
             targetLabel.text = target;
             intervalAfterLabel.text = target;
+
+        }
+        else
+        {
+            //Debug.Log("Timer: " + currentTime);
+        }
+    }
+
+    public void updateObstacleLabel(string obstacle)
+    {
+        if (intervalAfterLabelObstacle)
+        {
+            intervalAfterLabelObstacle.text = obstacle;
 
         }
         else
