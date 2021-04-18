@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
 
     public  float levelTime = 10f;
     [HideInInspector] public float currentTime = 0f;
-    protected bool startTime;
+    public bool startTime;
     [HideInInspector] public DSPlayerController player;
 
 

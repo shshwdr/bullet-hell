@@ -23,6 +23,7 @@ public class HPCharacterController : MonoBehaviour
     float currentInvinsibleTimer;
     //protected EmotesController emotesController;
     protected GameObject spriteObject;
+    [HideInInspector] public LevelManager levelManager;
     // Start is called before the first frame update
     virtual protected void Awake()
     {
@@ -62,6 +63,10 @@ public class HPCharacterController : MonoBehaviour
     }
     public void getDamage(int damage = 1)
     {
+        if (!levelManager.startTime)
+        {
+            return;
+        }
         if (isDead)
         {
             return;

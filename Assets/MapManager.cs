@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour
     void Awake()
     {
         var rand = Random.Range(0,playerSpawnPositions.childCount);
-        GameObject player =  Instantiate(playerPrefab, playerSpawnPositions.GetChild(rand).transform.position, Quaternion.identity);
+        GameObject player =  Instantiate(playerPrefab, playerSpawnPositions.GetChild(rand).transform.position, playerPrefab.transform.rotation);
         foreach(Transform trans in bulletManagers)
         {
             BulletFury.BulletManager bulletManager = trans.GetComponent<BulletFury.BulletManager>();

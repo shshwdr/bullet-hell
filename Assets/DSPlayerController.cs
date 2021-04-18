@@ -12,6 +12,7 @@ public class DSPlayerController : HPCharacterController
     [SerializeField] float bulletForce = 1000f;
     [SerializeField] float moveTime = 1f;
     [SerializeField] float slowTimeTo = 1f;
+    [SerializeField] float rotateSpeed = 0.4f;
     [SerializeField] Ease easeType;
     Rigidbody2D rb; 
     Sequence sequence;
@@ -21,7 +22,6 @@ public class DSPlayerController : HPCharacterController
     public Transform arrow;
 
     Vector3 originPosition;
-    [HideInInspector] public LevelManager levelManager;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -129,6 +129,11 @@ public class DSPlayerController : HPCharacterController
             {
                 bulletManager.isStopped = false;
             }
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            //DOTween.To(() => transform.rotation, x => transform.rotation = x, Quaternion.AngleAxis(angle, Vector3.forward), moveTime).SetUpdate(true);
+            
+            var q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.DORotateQuaternion(q, rotateSpeed);
 
         }
         //else if (Input.GetMouseButtonUp(0))

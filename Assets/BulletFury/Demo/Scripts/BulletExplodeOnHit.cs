@@ -14,7 +14,7 @@ namespace BulletFury
         {
             if (endOfLife) return;
             
-            StartCoroutine(PlayExplosion(bullet.Position));
+            //StartCoroutine(PlayExplosion(bullet.Position));
         }
 
         private IEnumerator PlayExplosion(Vector3 position)
