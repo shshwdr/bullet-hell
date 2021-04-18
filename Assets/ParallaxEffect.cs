@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParallaxEffect : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    public Transform target;
     [SerializeField] float speed;
     Vector3 lastPosition;
     // Start is called before the first frame update

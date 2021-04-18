@@ -34,6 +34,8 @@ public class DSPlayerController : HPCharacterController
             GameManager.Instance.player = this;
         }
         Time.timeScale = 0f;
+        var player = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        levelManager = player;
     }
     protected override void Die()
     {
