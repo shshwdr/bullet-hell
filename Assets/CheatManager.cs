@@ -11,6 +11,7 @@ public class CheatManager : Singleton<CheatManager>
     public bool turnedOnObstacle = false;
     public int obstacleValue = -1;
     public bool canShoot = false;
+    public int difficulty = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,5 +37,14 @@ public class CheatManager : Singleton<CheatManager>
         {
             infiniteHPInLevel = true;
         }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            GameManager.Instance.currentLevel.succeedLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GameManager.Instance.currentLevel.failedLevel();
+        }
+
     }
 }

@@ -20,6 +20,9 @@ public class GameManager : Singleton<GameManager>
     public bool success;
     public bool finishedLevel;
     public LeaderBoard leaderBoard;
+    public int difficulty;
+    public int difficultyIncreaseStep = 2;
+    int winTime = 0;
 
     Dictionary<int, bool> isLevelPlayed = new Dictionary<int, bool>();
 
@@ -58,7 +61,16 @@ public class GameManager : Singleton<GameManager>
         finishedLevel = true;
         HUD.Instance.updateHealth(currentPlayerHealth);
         HUD.Instance.updateScore(score);
+        difficulty = 0;
+        winTime = 0;
     }
+
+    public void increaseDifficulty()
+    {
+        difficulty += 1;
+        HUD.Instance.updateDifficulty();
+    }
+
     public bool havePlayedLevel()
     {
         if (isLevelPlayed.ContainsKey(currentLevelId))
@@ -98,7 +110,6 @@ public class GameManager : Singleton<GameManager>
                 looptime -= 1;
             }
             previousLevel = rand;
-            isLevelPlayed[rand] = true;
             currentLevelId = rand;
             //SceneManager.LoadScene(rand);
             //SceneManager.LoadScene((int)gameMode + 1);
@@ -135,7 +146,18 @@ public class GameManager : Singleton<GameManager>
             return;
         }
         successedLevel++;
+        isLevelPlayed[currentLevelId] = true;
         score += 1;
+        winTime += 1;
+        if (winTime >= difficultyIncreaseStep)
+        {
+            winTime = 0;
+            increaseDifficulty();
+        }
+        else
+        {
+            HUD.Instance.resetDifficulty();
+        }
         HUD.Instance.updateScore(score);
         GameEventMessage.SendEvent("finishLevel");
 
@@ -150,6 +172,7 @@ public class GameManager : Singleton<GameManager>
         {
             return;
         }
+        HUD.Instance.resetDifficulty();
         currentPlayerHealth -= 1;
         HUD.Instance.updateHealth(currentPlayerHealth);
 

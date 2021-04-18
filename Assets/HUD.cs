@@ -16,6 +16,7 @@ public class HUD : Singleton<HUD>
     public LevelManager levelManager;
 
     [SerializeField] TMP_Text intervalLabel;
+    [SerializeField] TMP_Text difficultyLabel;
     [SerializeField] TMP_Text intervalAfterLabel;
     [SerializeField] TMP_Text intervalAfterLabelObstacle;
     // Start is called before the first frame update
@@ -64,6 +65,7 @@ public class HUD : Singleton<HUD>
         }
     }
 
+
     public void updateScore(float currentTime)
     {
         if (scoreLabel)
@@ -106,7 +108,8 @@ public class HUD : Singleton<HUD>
 
     public void updateIntervalLevel()
     {
-        if (intervalLabel) { 
+        if (intervalLabel)
+        {
             if (GameManager.Instance.success)
             {
 
@@ -117,6 +120,29 @@ public class HUD : Singleton<HUD>
                 intervalLabel.text = "You FAILED in " + levelManager.levelName + " level";
 
             }
+        }
+
+
     }
+
+
+    public void updateDifficulty()
+    {
+        if (difficultyLabel)
+        {
+
+            difficultyLabel.text = "Difficulty increased!";
+            
+        }
+    }
+
+    public void resetDifficulty()
+    {
+        if (difficultyLabel)
+        {
+
+            difficultyLabel.text = "";
+
+        }
     }
 }

@@ -9,6 +9,7 @@ public class LeaderBoard : Singleton<LeaderBoard>
     [SerializeField] Transform leaderboardList;
     [SerializeField] GameObject leaderboardRow;
     [SerializeField] TMP_InputField inputName;
+    [SerializeField] TMP_Text score;
 
     public GameObject submitButton;
 
@@ -17,7 +18,9 @@ public class LeaderBoard : Singleton<LeaderBoard>
     void Start()
     {
         dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
+
         fetchScore();
+        score.text = string.Format("Congratualtion, you helped the human to survive {0} seconds! May he live longer!", 10 * GameManager.Instance.score);
     }
 
 
