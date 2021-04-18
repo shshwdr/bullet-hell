@@ -19,8 +19,6 @@ public class LevelManager : MonoBehaviour
 
     public virtual void Start()
     {
-        //player = GameObject.Find("Player").GetComponent<DSPlayerController>();
-        //player.levelManager = this;
         GameManager.Instance.currentLevel = this;
         hud = HUD.Instance;
         hud.levelManager = this;

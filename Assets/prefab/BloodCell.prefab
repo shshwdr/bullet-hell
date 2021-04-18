@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 4555001326286499631}
   - component: {fileID: 35359542}
   m_Layer: 8
-  m_Name: Player
+  m_Name: BloodCell
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   oilSlowDown: 0.4
   isMirrorPlayer: 0
   arrow: {fileID: 1722124086}
+  willShoot: 0
 --- !u!50 &4555001326286499629
 Rigidbody2D:
   serializedVersion: 4
@@ -301,7 +302,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.5
 --- !u!96 &4555001326286499631
 TrailRenderer:
   serializedVersion: 2
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitByBullets: []
   shape: 0
-  radius: 0.5
+  radius: 0.25
   size: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: 0}
   OnCollide:

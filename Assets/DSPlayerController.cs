@@ -25,6 +25,8 @@ public class DSPlayerController : HPCharacterController
 
     public Transform arrow;
 
+    public bool willShoot = false;
+
     Vector3 originPosition;
     // Start is called before the first frame update
     protected override void Awake()
@@ -115,6 +117,15 @@ public class DSPlayerController : HPCharacterController
         rb.angularVelocity = 0;
         rb.Sleep();
     }
+
+    bool canShoot()
+    {
+        if (CheatManager.Instance.canShoot || willShoot)
+        {
+            return true;
+        }
+        return false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -156,8 +167,6 @@ public class DSPlayerController : HPCharacterController
                 bulletManager.isStopped = false;
             }
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            //DOTween.To(() => transform.rotation, x => transform.rotation = x, Quaternion.AngleAxis(angle, Vector3.forward), moveTime).SetUpdate(true);
-            
             var q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.DORotateQuaternion(q, rotateSpeed);
 
@@ -165,7 +174,7 @@ public class DSPlayerController : HPCharacterController
         //else if (Input.GetMouseButtonUp(0))
         //{
         //}
-        else if (Input.GetMouseButtonDown(1))
+        else if (canShoot() && Input.GetMouseButtonDown(1))
         {
             Time.timeScale = 1;
             sequence.Kill();
@@ -182,6 +191,10 @@ public class DSPlayerController : HPCharacterController
             var hitdir = -getMouseDirection() * hitBackDistance;
 
             rb.AddForce(hitdir, ForceMode2D.Impulse);
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            var q = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.DORotateQuaternion(q, rotateSpeed);
 
             StartCoroutine(slowDown());
             if (levelManager)
