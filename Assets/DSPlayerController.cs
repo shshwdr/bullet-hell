@@ -14,6 +14,10 @@ public class DSPlayerController : HPCharacterController
     [SerializeField] float slowTimeTo = 1f;
     [SerializeField] float rotateSpeed = 0.4f;
     [SerializeField] Ease easeType;
+    [SerializeField] GameObject oilEffect;
+    float oilEffectTime = -1;
+    bool oilEffectIsOn = false;
+    [SerializeField] float oilSlowDown = 0.5f;
     Rigidbody2D rb; 
     Sequence sequence;
 
@@ -36,6 +40,18 @@ public class DSPlayerController : HPCharacterController
         Time.timeScale = 0f;
         var player = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         levelManager = player;
+    }
+
+    public void addOilEffect(float t)
+    {
+        oilEffect.SetActive(true);
+        oilEffectIsOn = true;
+        oilEffectTime = t;
+    }
+    public void removeOilEffect()
+    {
+        oilEffect.SetActive(false);
+        oilEffectIsOn = false;
     }
     protected override void Die()
     {
@@ -106,6 +122,16 @@ public class DSPlayerController : HPCharacterController
         {
             return;
         }
+
+        if (oilEffectIsOn)
+        {
+            oilEffectTime -= Time.deltaTime;
+            if (oilEffectTime <= 0)
+            {
+                removeOilEffect();
+            }
+        }
+
         arrow.up = getMouseDirection();
 
         if (Input.GetMouseButtonDown(0))
@@ -115,7 +141,7 @@ public class DSPlayerController : HPCharacterController
             clearVelocity();
 
 
-            var dir = getMouseDirection() * moveDistance;
+            var dir = getMouseDirection() * moveDistance * (oilEffectIsOn ? oilSlowDown : 1);
 
             rb.AddForce(dir, ForceMode2D.Impulse);
             // DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, moveTime).SetUpdate(true);
@@ -149,7 +175,7 @@ public class DSPlayerController : HPCharacterController
             bullet.SetActive(true);
             bullet.transform.position = transform.position;
 
-            var dir = getMouseDirection() * bulletForce;
+            var dir = getMouseDirection() * bulletForce * (oilEffectIsOn? oilSlowDown:1);
             bullet.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
 
 
