@@ -117,11 +117,15 @@ public class DSPlayerController : HPCharacterController
 
             rb.AddForce(dir, ForceMode2D.Impulse);
             // DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, moveTime).SetUpdate(true);
+            
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
             StartCoroutine(slowDown());
             // The shortcuts way
             //﻿﻿﻿﻿﻿﻿﻿﻿transform.DOMove(new Vector3(2,2,2), 1);
             // The generic way
-            if(levelManager)
+            if (levelManager)
                 levelManager.startLevelMove();
             foreach (var bulletManager in GetComponent<BulletFury.BulletCollider>().hitByBullets)
             {
