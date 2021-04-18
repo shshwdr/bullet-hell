@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GameMode { survive };//,collect,killEnemy, mirror}
+public enum GameMode { survive ,collect };//,killEnemy, mirror}
 public class GameManager : Singleton<GameManager>
 {
 
@@ -18,6 +18,8 @@ public class GameManager : Singleton<GameManager>
     public bool success;
     public bool finishedLevel;
     public LeaderBoard leaderBoard;
+
+    int previousLevel = -1;
 
     int successedLevel = 0;
     // Start is called before the first frame update
@@ -78,6 +80,13 @@ public class GameManager : Singleton<GameManager>
         else
         {
             int rand = UnityEngine.Random.Range(1, Enum.GetValues(typeof(GameMode)).Length+1);
+            int looptime = 100;
+            while(rand == previousLevel&& looptime>=0)
+            {
+                rand = UnityEngine.Random.Range(1, Enum.GetValues(typeof(GameMode)).Length + 1);
+                looptime -= 1;
+            }
+            previousLevel = rand;
             //SceneManager.LoadScene(rand);
             //SceneManager.LoadScene((int)gameMode + 1);
             //StartCoroutine(test(rand)); 

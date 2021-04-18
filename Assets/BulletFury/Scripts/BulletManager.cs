@@ -18,7 +18,8 @@ namespace BulletFury
 
         // render priority. Higher number = drawn on top.
         [SerializeField] private int drawPriority = 0;
-        
+        public bool isStopped = true;
+
         // the settings for the bullet's behaviour over time
         [SerializeField] private BulletSettings bulletSettings = null;
         public BulletPlane Plane => bulletSettings.Plane;
@@ -29,7 +30,6 @@ namespace BulletFury
         [SerializeField] private int currentActiveBullets;
         [SerializeField] private int maxActiveBullets;
         [SerializeField] private bool startAtBeginning = true;
-        [SerializeField] public bool isStopped = true;
 
         public bool TrackObject
         {

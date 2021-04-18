@@ -7,6 +7,7 @@ namespace BulletFury.Editor
     {
         private SerializedProperty _maxBullets;
         private SerializedProperty _drawPriority;
+        private SerializedProperty _isStopped;
         private SerializedProperty _bulletSettings;
         private SerializedProperty _spawnSettings;
         private SerializedProperty _currentActiveBullets;
@@ -18,6 +19,7 @@ namespace BulletFury.Editor
         {
             _maxBullets = serializedObject.FindProperty("maxBullets");
             _drawPriority = serializedObject.FindProperty("drawPriority");
+            _isStopped = serializedObject.FindProperty("isStopped");
             _bulletSettings = serializedObject.FindProperty("bulletSettings");
             _spawnSettings = serializedObject.FindProperty("spawnSettings");
             _currentActiveBullets = serializedObject.FindProperty("currentActiveBullets");
@@ -47,8 +49,9 @@ namespace BulletFury.Editor
                 EditorGUILayout.HelpBox("Max bullets is fewer than the number of bullets used, this will cause issues", MessageType.Warning);
             EditorGUILayout.Space();
 
-            EditorGUILayout.PropertyField(_drawPriority);
-            
+            EditorGUILayout.PropertyField(_drawPriority); 
+EditorGUILayout.PropertyField(_isStopped);
+
             EditorGUILayout.PropertyField(_bulletSettings);
             EditorGUILayout.PropertyField(_spawnSettings);
             EditorGUILayout.Space();
