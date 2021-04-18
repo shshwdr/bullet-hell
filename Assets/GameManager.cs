@@ -1,10 +1,11 @@
 ﻿using Doozy.Engine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GameMode { survive,collect,killEnemy, mirror}
+public enum GameMode { survive };//,collect,killEnemy, mirror}
 public class GameManager : Singleton<GameManager>
 {
 
@@ -69,19 +70,30 @@ public class GameManager : Singleton<GameManager>
         if (CheatManager.Instance.turnedOnCheat && CheatManager.Instance.nextLevel > 0)
         {
 
-                SceneManager.LoadScene(CheatManager.Instance.nextLevel);
-           
+            // SceneManager.LoadScene(CheatManager.Instance.nextLevel);
+
+            SceneManager.LoadScene(CheatManager.Instance.nextLevel);
+            //StartCoroutine(test(CheatManager.Instance.nextLevel));
         }
         else
         {
-            int rand = Random.Range(1, 7);
-            SceneManager.LoadScene(rand);
+            int rand = UnityEngine.Random.Range(1, Enum.GetValues(typeof(GameMode)).Length+1);
+            //SceneManager.LoadScene(rand);
             //SceneManager.LoadScene((int)gameMode + 1);
+            //StartCoroutine(test(rand)); 
+            SceneManager.LoadScene(rand);
         }
 
-        GameEventMessage.SendEvent("LevelStart");
         //finishedInterval();
+        GameEventMessage.SendEvent("LevelStart");
     }
+
+    //IEnumerator test(int level)
+    //{
+    //    yield return new WaitForSecondsRealtime(0.1f);
+    //    SceneManager.LoadScene(level);
+    //    GameEventMessage.SendEvent("LevelStart");
+    //}
 
     public void finishedInterval()
     {

@@ -33,6 +33,7 @@ public class DSPlayerController : HPCharacterController
             HUD.Instance.player = this;
             GameManager.Instance.player = this;
         }
+        Time.timeScale = 0f;
     }
     protected override void Die()
     {
@@ -44,7 +45,12 @@ public class DSPlayerController : HPCharacterController
 
         base.Die();
 
-        Time.timeScale = 0;
+        foreach(var bulletManager in GetComponent<BulletFury.BulletCollider>().hitByBullets)
+        {
+            bulletManager.enabled = false;
+        }
+
+        Time.timeScale = 0f;
         sequence.Kill();
         clearVelocity();
 
@@ -117,6 +123,10 @@ public class DSPlayerController : HPCharacterController
             // The generic way
             if(levelManager)
                 levelManager.startLevelMove();
+            foreach (var bulletManager in GetComponent<BulletFury.BulletCollider>().hitByBullets)
+            {
+                bulletManager.isStopped = false;
+            }
         }
         else if (Input.GetMouseButtonDown(1))
         {
@@ -137,7 +147,12 @@ public class DSPlayerController : HPCharacterController
             rb.AddForce(hitdir, ForceMode2D.Impulse);
 
             StartCoroutine(slowDown());
-            levelManager.startLevelMove();
+            if (levelManager)
+                levelManager.startLevelMove(); 
+            foreach (var bulletManager in GetComponent<BulletFury.BulletCollider>().hitByBullets)
+            {
+                bulletManager.isStopped = false;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {

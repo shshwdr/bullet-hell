@@ -16,7 +16,7 @@ MonoBehaviour:
   burstCount: 2
   burstDelay: 0.45
   spawnDir: 2
-  numSides: 20
+  numSides: 10
   numPerSide: 1
   radius: 1
   arc: 124

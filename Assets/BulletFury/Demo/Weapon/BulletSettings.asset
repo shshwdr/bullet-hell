@@ -17,13 +17,13 @@ MonoBehaviour:
   plane: 0
   waitToStart: 0
   timeToPlayWhileWaiting: 0.25
-  lifetime: 1
+  lifetime: 2
   speed: 8
   inheritSpeedFromTransform: 0
   size: 0.25
   angularVelocity: 0
   startColor: {r: 0, g: 0.21920633, b: 1, a: 1}
-  useColorOverTime: 1
+  useColorOverTime: 0
   colorOverTime:
     serializedVersion: 2
     key0: {r: 2, g: 2, b: 2, a: 1}
@@ -273,4 +273,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  isExpanded: 0
+  isExpanded: 1

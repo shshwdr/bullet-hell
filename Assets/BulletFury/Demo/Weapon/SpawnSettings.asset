@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a23ae2178c4258a35e0704bcdfe093, type: 3}
   m_Name: SpawnSettings
   m_EditorClassIdentifier: 
-  fireRate: 0.075
+  fireRate: 1
   burstCount: 1
   burstDelay: 0.05
   spawnDir: 0
-  numSides: 15
+  numSides: 10
   numPerSide: 1
   radius: 0
   arc: 360
-  isExpanded: 0
+  isExpanded: 1

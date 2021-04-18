@@ -13,7 +13,7 @@ namespace BulletFury
     public class BulletCollider : MonoBehaviour
     {
         // the set of bullets this collider should collide with
-        [SerializeField] private List<BulletManager> hitByBullets = new List<BulletManager>();
+        [SerializeField] public List<BulletManager> hitByBullets = new List<BulletManager>();
         public List<BulletManager> HitByBullets => hitByBullets;
 
 

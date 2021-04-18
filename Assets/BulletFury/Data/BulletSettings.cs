@@ -135,6 +135,11 @@ namespace BulletFury.Data
         /// <param name="deltaTime">cached Time.deltaTime</param>
         public void SetValues(ref BulletContainer bullet, float deltaTime, Vector3 position, Vector3 previousPosition)
         {
+
+            if(float.IsNaN(bullet.CurrentLifePercent))
+            {
+                return;
+            }
             // if the bullet is dead or waiting, don't do anything
             if (bullet.Dead == 1 || bullet.Waiting == 1 && bullet.CurrentLifeSeconds > bullet.TimeToWait)
                 return;

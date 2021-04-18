@@ -28,6 +28,8 @@ namespace BulletFury
 
         [SerializeField] private int currentActiveBullets;
         [SerializeField] private int maxActiveBullets;
+        [SerializeField] private bool startAtBeginning = true;
+        [SerializeField] public bool isStopped = true;
 
         public bool TrackObject
         {
@@ -70,6 +72,11 @@ namespace BulletFury
             _colors = new Vector4[maxBullets];
             _materialPropertyBlock = new MaterialPropertyBlock();
             _previousPos = transform.position;
+
+            if (startAtBeginning)
+            {
+                _currentTime = spawnSettings.FireRate;
+            }
         }
 
         /// <summary>
@@ -213,7 +220,7 @@ namespace BulletFury
         public void Spawn(Vector3 position, Vector3 forward)
         {
             // don't spawn a bullet if we haven't reached the correct fire rate
-            if (_currentTime < spawnSettings.FireRate)
+            if (isStopped||_currentTime < spawnSettings.FireRate)
                 return;
             // reset the current time
             _currentTime = 0;

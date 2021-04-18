@@ -33,6 +33,15 @@ namespace BulletFury
             }
 
             container.CurrentLifePercent = container.CurrentLifeSeconds / container.Lifetime;
+            //if (float.IsNaN(test))
+            //{
+
+            //}
+            //else
+            //{
+
+            //    container.CurrentLifePercent = test;
+            //}
             container.Position += container.Velocity * DeltaTime +
                                   container.Force * DeltaTime;
 
