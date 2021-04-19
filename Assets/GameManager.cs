@@ -151,6 +151,11 @@ public class GameManager : Singleton<GameManager>
         {
             return;
         }
+        if (TutorialManager.Instance.isInTutorial)
+        {
+
+            TutorialManager.Instance.finishLevel();
+        }
         successedLevel++;
         isLevelPlayed[currentLevelId] = true;
         score += 1;
@@ -201,11 +206,6 @@ public class GameManager : Singleton<GameManager>
 
     public virtual void finishLevel()
     {
-        if (TutorialManager.Instance.isInTutorial)
-        {
-
-            TutorialManager.Instance.finishLevel();
-        }
         //yield some time
         finishedLevel = true;
         HUD.Instance.updateIntervalLevel();
