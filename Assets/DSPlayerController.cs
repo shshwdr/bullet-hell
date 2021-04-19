@@ -18,6 +18,12 @@ public class DSPlayerController : HPCharacterController
     float oilEffectTime = -1;
     bool oilEffectIsOn = false;
     [SerializeField] float oilSlowDown = 0.5f;
+
+
+    [SerializeField] GameObject drunkEffect;
+    float drunkEffectTime = -1;
+    bool drunkEffectIsOn = false;
+
     Rigidbody2D rb; 
     Sequence sequence;
     [SerializeField] SpriteRenderer redBloodSprite;
@@ -57,6 +63,18 @@ public class DSPlayerController : HPCharacterController
     {
         oilEffect.SetActive(false);
         oilEffectIsOn = false;
+    }
+
+    public void addDrunkEffect(float t)
+    {
+        drunkEffect.SetActive(true);
+        drunkEffectIsOn = true;
+        drunkEffectTime = t;
+    }
+    public void removeDrunkEffect()
+    {
+        drunkEffect.SetActive(false);
+        drunkEffectIsOn = false;
     }
     Color redBloodColor(float ratio)
     {
@@ -128,7 +146,7 @@ public class DSPlayerController : HPCharacterController
         var target = Input.mousePosition;
         target = Camera.main.ScreenToWorldPoint(target);
         var dir = (target - transform.position);
-        dir = new Vector3(dir.x, dir.y, 0).normalized;
+        dir = new Vector3(dir.x, dir.y, 0).normalized ;
         return dir;
     }
 
@@ -164,6 +182,15 @@ public class DSPlayerController : HPCharacterController
             }
         }
 
+        if (drunkEffectIsOn)
+        {
+            drunkEffectTime -= Time.deltaTime;
+            if (drunkEffectTime <= 0)
+            {
+                removeDrunkEffect();
+            }
+        }
+
         arrow.up = getMouseDirection();
 
         if (Input.GetMouseButtonDown(0))
@@ -173,7 +200,7 @@ public class DSPlayerController : HPCharacterController
             clearVelocity();
 
 
-            var dir = getMouseDirection() * moveDistance * (oilEffectIsOn ? oilSlowDown : 1);
+            var dir = getMouseDirection() * moveDistance * (oilEffectIsOn ? oilSlowDown : 1) * (drunkEffectIsOn ? -1 : 1);
 
             rb.AddForce(dir, ForceMode2D.Impulse);
             // DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, moveTime).SetUpdate(true);
@@ -205,7 +232,7 @@ public class DSPlayerController : HPCharacterController
             bullet.SetActive(true);
             bullet.transform.position = transform.position;
 
-            var dir = getMouseDirection() * bulletForce * (oilEffectIsOn? oilSlowDown:1);
+            var dir = getMouseDirection() * bulletForce * (oilEffectIsOn? oilSlowDown:1) * (drunkEffectIsOn ? -1 : 1);
             bullet.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
 
 

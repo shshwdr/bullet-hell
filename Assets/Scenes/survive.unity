@@ -188,7 +188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &543516021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   infiniteHP: 0
   infiniteHPInLevel: 1
   turnedOnObstacle: 1
-  obstacleValue: 2
+  obstacleValue: 3
   canShoot: 0
   difficulty: 1
 --- !u!4 &543516022

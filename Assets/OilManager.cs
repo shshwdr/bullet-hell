@@ -5,6 +5,7 @@ using UnityEngine;
 public class OilManager : MonoBehaviour
 {
     [SerializeField] float oilEffectTime = 2f;
+    [SerializeField] int effectType = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,16 @@ public class OilManager : MonoBehaviour
 
         if (collision.GetComponent<DSPlayerController>())
         {
-            collision.GetComponent<DSPlayerController>().addOilEffect(oilEffectTime);
+            if(effectType == 0)
+            {
+
+                collision.GetComponent<DSPlayerController>().addOilEffect(oilEffectTime);
+            }
+            else
+            {
+
+                collision.GetComponent<DSPlayerController>().addDrunkEffect(oilEffectTime);
+            }
         }
     }
 }
