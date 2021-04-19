@@ -11,8 +11,8 @@ public class killEnemyLevelManager : CollectLevelManager
         levelName = "Kill Enemy";
         currentCollectValue = 0;
         levelName = Dialogs.shootLevelName;
-        hud.updateTarget(string.Format(Dialogs.shootLevelTarget, currentCollectValue),
-            string.Format(Dialogs.shootLevelIntroduction, currentCollectValue));
+        hud.updateTarget(string.Format(Dialogs.shootLevelTarget, levelTargetValue),
+            string.Format(Dialogs.shootLevelIntroduction, levelTargetValue));
     }
 
     //public void kill()

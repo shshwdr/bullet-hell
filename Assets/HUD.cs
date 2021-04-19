@@ -17,6 +17,7 @@ public class HUD : Singleton<HUD>
 
     [SerializeField] TMP_Text intervalLabel;
     [SerializeField] TMP_Text difficultyLabel;
+    [SerializeField] TMP_Text tutorialLabel;
     [SerializeField] TMP_Text intervalAfterLabel;
     [SerializeField] TMP_Text intervalAfterLabelObstacle;
     // Start is called before the first frame update
@@ -142,6 +143,25 @@ public class HUD : Singleton<HUD>
         {
 
             difficultyLabel.text = "";
+
+        }
+    }
+
+    public void clearTutorialMessage()
+    {
+        if (tutorialLabel)
+        {
+
+            tutorialLabel.text = "";
+
+        }
+    }
+    public void showTutorialMessage(string s)
+    {
+        if (tutorialLabel)
+        {
+
+            tutorialLabel.text = s;
 
         }
     }

@@ -8,9 +8,9 @@ public class DevourLevelManager : CollectLevelManager
     {
         base.Start();
 
+        levelTargetValue = GameManager.Instance.difficulty + 1;
         levelName = Dialogs.devourLevelName;
-        hud.updateTarget(string.Format(Dialogs.devourLevelTarget, currentCollectValue),
-            string.Format(Dialogs.devourLevelIntroduction, currentCollectValue));
-        currentCollectValue = GameManager.Instance.difficulty+1;
+        hud.updateTarget(string.Format(Dialogs.devourLevelTarget, levelTargetValue),
+            string.Format(Dialogs.devourLevelIntroduction, levelTargetValue));
     }
 }

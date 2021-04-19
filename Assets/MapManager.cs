@@ -18,7 +18,7 @@ public class MapManager : MonoBehaviour
     {
         var rand = Random.Range(0,playerSpawnPositions.childCount);
         GameObject player =  Instantiate(playerPrefab, playerSpawnPositions.GetChild(rand).transform.position, playerPrefab.transform.rotation);
-        if(GameManager.Instance.currentLevel is PairLevelManager || FindObjectOfType<PairLevelManager>())
+        if(FindObjectOfType<PairLevelManager>())
         {
             Instantiate(playerPrefab, playerSpawnPositions2.GetChild(rand).transform.position, playerPrefab.transform.rotation);
             woundSpawnPositions.GetChild(rand).gameObject.SetActive(true);

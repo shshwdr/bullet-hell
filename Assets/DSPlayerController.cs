@@ -125,7 +125,6 @@ public class DSPlayerController : HPCharacterController
         //sequence.Kill();
         //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
 
-        BulletHell.ProjectileManager.Instance.clearAllProjectiles();
         transform.position = originPosition;
         Time.timeScale = 1;
         resurrect();
@@ -195,6 +194,10 @@ public class DSPlayerController : HPCharacterController
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (TutorialManager.Instance.isInTutorial)
+            {
+                TutorialManager.Instance.leftClick();
+            }
             Time.timeScale = 1;
             sequence.Kill();
             clearVelocity();
@@ -224,6 +227,10 @@ public class DSPlayerController : HPCharacterController
         //}
         else if (canShoot() && Input.GetMouseButtonDown(1))
         {
+            if (TutorialManager.Instance.isInTutorial)
+            {
+                TutorialManager.Instance.rightClick();
+            }
             Time.timeScale = 1;
             sequence.Kill();
             clearVelocity();

@@ -30,14 +30,12 @@ public class LevelManager : MonoBehaviour
         currentTime = levelTime;
         startTime = false;
         HUD.Instance.updateTimer(currentTime);
-        BulletHell.ProjectileManager.Instance.RegisterEmitters();
     }
 
     public virtual void startLevelMove()
     {
         startTime = true;
         HUD.Instance.StartLevelMove();
-        BulletHell.ProjectileManager.Instance.StartEmitters();
     }
 
     public virtual void succeedLevel()

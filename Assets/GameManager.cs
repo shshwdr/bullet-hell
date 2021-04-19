@@ -97,8 +97,14 @@ public class GameManager : Singleton<GameManager>
 
             // SceneManager.LoadScene(CheatManager.Instance.nextLevel);
 
-            SceneManager.LoadScene(CheatManager.Instance.nextLevel);
+            currentLevelId = CheatManager.Instance.nextLevel;
+            SceneManager.LoadScene(currentLevelId);
             //StartCoroutine(test(CheatManager.Instance.nextLevel));
+        }else if (TutorialManager.Instance.isInTutorial)
+        {
+            HUD.Instance.showTutorialMessage(Dialogs.tutorialStrings[TutorialManager.Instance.currentTutorialId]);
+            currentLevelId = (int)TutorialManager.Instance.tutorialOrder[TutorialManager.Instance.currentTutorialId] + 1;
+            SceneManager.LoadScene(currentLevelId);
         }
         else
         {
@@ -195,9 +201,13 @@ public class GameManager : Singleton<GameManager>
 
     public virtual void finishLevel()
     {
+        if (TutorialManager.Instance.isInTutorial)
+        {
+
+            TutorialManager.Instance.finishLevel();
+        }
         //yield some time
         finishedLevel = true;
-        BulletHell.ProjectileManager.Instance.ClearEmitters();
         HUD.Instance.updateIntervalLevel();
     }
     // Update is called once per frame

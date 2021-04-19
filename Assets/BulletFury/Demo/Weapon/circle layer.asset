@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a23ae2178c4258a35e0704bcdfe093, type: 3}
   m_Name: circle layer
   m_EditorClassIdentifier: 
-  fireRate: 2
+  fireRate: 4
   burstCount: 2
   burstDelay: 0.45
-  spawnDir: 2
-  numSides: 10
+  spawnDir: 1
+  numSides: 6
   numPerSide: 1
   radius: 1
   arc: 360

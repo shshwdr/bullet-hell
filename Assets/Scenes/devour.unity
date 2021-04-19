@@ -191,6 +191,57 @@ MonoBehaviour:
   currentTime: 0
   startTime: 0
   player: {fileID: 0}
+--- !u!1 &289808164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289808166}
+  - component: {fileID: 289808165}
+  m_Layer: 0
+  m_Name: cheat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &289808165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289808164}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5177b5c9804010d46bdd257184ed8e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnedOnCheat: 1
+  nextLevel: -1
+  infiniteHP: 0
+  infiniteHPInLevel: 1
+  turnedOnObstacle: 0
+  obstacleValue: -1
+  canShoot: 0
+  difficulty: 2
+--- !u!4 &289808166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289808164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.379875, y: 5.6323013, z: -1.0141158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1164907266
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,11 +402,19 @@ PrefabInstance:
     - target: {fileID: 8091285534619193158, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: spawnSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 602c3968f7568b3429e237a42597097d, type: 2}
+      objectReference: {fileID: 11400000, guid: 77bf8fda05b9b4d2994f71ffce6eb58b, type: 2}
     - target: {fileID: 8091285534619193158, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: bulletSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 11c070c151d5387468f520124b8c0632, type: 2}
+      objectReference: {fileID: 11400000, guid: bbc7a91ff4b1144d2804517b02d6ec3e, type: 2}
+    - target: {fileID: 8091285534619193159, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091285534619193159, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.34
+      objectReference: {fileID: 0}
     - target: {fileID: 8091285534659997332, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -363,11 +422,11 @@ PrefabInstance:
     - target: {fileID: 8091285536486947184, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: spawnSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 602c3968f7568b3429e237a42597097d, type: 2}
+      objectReference: {fileID: 11400000, guid: 0515eb51714124b3e8455c66229988ed, type: 2}
     - target: {fileID: 8091285536486947184, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: bulletSettings
       value: 
-      objectReference: {fileID: 11400000, guid: 11c070c151d5387468f520124b8c0632, type: 2}
+      objectReference: {fileID: 11400000, guid: 06a658486bde54f07aafd6fd6e79851d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
 --- !u!1 &1407025027 stripped

@@ -11,8 +11,8 @@ public class CollectLevelManager : LevelManager
         base.Start();
 
         levelName = Dialogs.collectLevelName;
-        hud.updateTarget(string.Format(Dialogs.collectLevelTarget, currentCollectValue),
-            string.Format(Dialogs.collectLevelIntroduction, currentCollectValue));
+        hud.updateTarget(string.Format(Dialogs.collectLevelTarget, levelTargetValue),
+            string.Format(Dialogs.collectLevelIntroduction, levelTargetValue));
     }
 
     public void collect()
