@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/dashShoot.unity
     guid: b5a8b49c6b8eee24a9f52df7cc15ffe7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/survive.unity
     guid: d57418fb516c19c42808c5e6d42c5de1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/collect.unity
     guid: e9e0d0ff9affa824f92f345d32e6ef18
-  - enabled: 1
+  - enabled: 0
     path: Assets/BulletFury/Demo/Scenes/Demo_Scene.unity
     guid: f48899693b1c6409884b6edd73fe2b80
+  - enabled: 1
+    path: Assets/Scenes/killEnemy.unity
+    guid: 0bf4d01ebf7e3544ebe723414a95737a
   m_configObjects: {}

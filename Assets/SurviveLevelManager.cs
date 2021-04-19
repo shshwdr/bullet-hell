@@ -9,8 +9,9 @@ public class SurviveLevelManager : LevelManager
     public override void Start()
     {
         base.Start();
-        levelName = "Survival";
-        hud.updateTarget("Survive "+ levelTime+" seconds");
+        levelName = Dialogs.surviveLevelName;
+        hud.updateTarget(string.Format(Dialogs.surviveLevelTarget, levelTime),
+            string.Format(Dialogs.surviveLevelIntroduction, levelTime));
     }
 
     // Update is called once per frame

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62c0e891ad5d62459017ff960dc8473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTargetValue: 2
+  levelTargetValue: 3
   levelName: 
   levelTime: 10
   currentTime: 0
@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3492964763474831892, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 7613708304220043930, guid: d0aa082a556d022449e61c29c276998e, type: 3}
     - target: {fileID: 3492964763705273692, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10

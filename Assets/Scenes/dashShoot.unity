@@ -4457,7 +4457,7 @@ MonoBehaviour:
   finishedLevel: 0
   leaderBoard: {fileID: 1673061762}
   difficulty: 0
-  difficultyIncreaseStep: 2
+  difficultyIncreaseStep: 4
 --- !u!114 &825859066
 MonoBehaviour:
   m_ObjectHideFlags: 0

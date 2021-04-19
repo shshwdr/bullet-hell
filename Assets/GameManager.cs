@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GameMode { survive ,collect };//,killEnemy, mirror}
+public enum GameMode { survive};//,killEnemy, mirror}
 public class GameManager : Singleton<GameManager>
 {
 

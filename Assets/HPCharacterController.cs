@@ -63,7 +63,7 @@ public class HPCharacterController : MonoBehaviour
     }
     public void getDamage(int damage = 1)
     {
-        if (!levelManager.startTime)
+        if (levelManager && !levelManager.startTime)
         {
             return;
         }

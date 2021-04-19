@@ -79,12 +79,12 @@ public class HUD : Singleton<HUD>
         }
     }
 
-    public void updateTarget(string target)
+    public void updateTarget(string target, string introduction)
     {
         if (targetLabel)
         {
             targetLabel.text = target;
-            intervalAfterLabel.text = target;
+            intervalAfterLabel.text = introduction;
 
         }
         else

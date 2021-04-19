@@ -7,8 +7,9 @@ public class PairLevelManager : LevelManager
     public override void Start()
     {
         base.Start();
-        levelName = "Pair";
-        hud.updateTarget("Pair to another");
+        levelName = Dialogs.fixLevelName;
+        hud.updateTarget(string.Format(Dialogs.fixLevelTarget, levelTime),
+            string.Format(Dialogs.fixLevelIntroduction, levelTime));
     }
     public void pair()
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1591073865364168396}
   - component: {fileID: 261107096}
   - component: {fileID: 7423226383195111750}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: bullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 1591073865540936547}
   - component: {fileID: 1591073865540936556}
   - component: {fileID: 354013239}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Circle
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -136,7 +137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: bb72f5ca984e00d44aff91ecb54c2487, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0

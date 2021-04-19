@@ -221,11 +221,11 @@ public class DSPlayerController : HPCharacterController
         Time.fixedDeltaTime = Time.timeScale * 0.01f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Player" && GameManager.Instance.currentLevel is PairLevelManager)
-        {
-            ((PairLevelManager)GameManager.Instance.currentLevel).pair();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.tag == "Wound" && GameManager.Instance.currentLevel is PairLevelManager)
+    //    {
+    //        ((PairLevelManager)GameManager.Instance.currentLevel).pair();
+    //    }
+    //}
 }

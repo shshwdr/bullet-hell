@@ -9,9 +9,10 @@ public class CollectLevelManager : LevelManager
     public override void Start()
     {
         base.Start();
-        levelName = "Collect";
-        currentCollectValue = 0;
-        hud.updateTarget("collect " + levelTargetValue + " stars");
+
+        levelName = Dialogs.collectLevelName;
+        hud.updateTarget(string.Format(Dialogs.collectLevelTarget, currentCollectValue),
+            string.Format(Dialogs.collectLevelIntroduction, currentCollectValue));
     }
 
     public void collect()

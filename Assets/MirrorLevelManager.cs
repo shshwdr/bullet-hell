@@ -8,7 +8,7 @@ public class MirrorLevelManager : LevelManager
     {
         base.Start();
         levelName = "Mirror";
-        hud.updateTarget("Move to the mirrored one");
+        //hud.updateTarget("Move to the mirrored one");
     }
     public void pair()
     {

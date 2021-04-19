@@ -18,7 +18,7 @@ public class FindEnemyLevelManager : LevelManager
         {
             Debug.LogError("room id too small " + roomId + " " + roomBoxList.Count);
         }
-        hud.updateTarget("Find enemy in " + roomNameList[roomId]);
+        //hud.updateTarget("Find enemy in " + roomNameList[roomId]);
         roomBoxList[roomId].shouldTrigger = true;
     }
 
