@@ -20,6 +20,7 @@ public class DSPlayerController : HPCharacterController
     [SerializeField] float oilSlowDown = 0.5f;
     Rigidbody2D rb; 
     Sequence sequence;
+    [SerializeField] SpriteRenderer redBloodSprite;
 
     public bool isMirrorPlayer;
 
@@ -42,6 +43,8 @@ public class DSPlayerController : HPCharacterController
         Time.timeScale = 0f;
         var player = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         levelManager = player;
+        collect(0);
+
     }
 
     public void addOilEffect(float t)
@@ -54,6 +57,24 @@ public class DSPlayerController : HPCharacterController
     {
         oilEffect.SetActive(false);
         oilEffectIsOn = false;
+    }
+    Color redBloodColor(float ratio)
+    {
+        float diff1 = 1 - (155f * ratio) / 255;
+        float diff2 = 1 - (ratio) / 255;
+        Color res = new Color(diff1, diff2, diff2);
+        return res;
+    }
+    public void collect(float ratio)
+    {
+        if (FindObjectOfType<CollectLevelManager>() && redBloodSprite)
+        {
+            if (FindObjectOfType<DeliverLevelManager>())
+            {
+                ratio = 1 - ratio;
+            }
+            redBloodSprite.color = redBloodColor(ratio);
+        }
     }
     protected override void Die()
     {

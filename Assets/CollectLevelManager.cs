@@ -18,6 +18,7 @@ public class CollectLevelManager : LevelManager
     public void collect()
     {
         currentCollectValue++;
+        GameManager.Instance.player.collect(currentCollectValue/(float)levelTargetValue);
         if (currentCollectValue>=levelTargetValue)
         {
             succeedLevel();

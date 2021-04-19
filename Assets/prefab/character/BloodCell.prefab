@@ -19,6 +19,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2142319858, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2142319858, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2142319858, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4555001326286499618, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
       propertyPath: m_Name
       value: BloodCell
@@ -71,9 +83,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4555001326286499628, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
+      propertyPath: redBloodSprite
+      value: 
+      objectReference: {fileID: 6241935000425881930}
     - target: {fileID: 6988886158461779768, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
+--- !u!212 &6241935000425881930 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2142319858, guid: ffba1352bd7c8ca41b6aee5c0fcb08ef, type: 3}
+  m_PrefabInstance: {fileID: 6241935000045311416}
+  m_PrefabAsset: {fileID: 0}

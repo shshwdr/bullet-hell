@@ -21,7 +21,7 @@ public class CheatManager : Singleton<CheatManager>
     // Update is called once per frame
     void Update()
     {
-        for (int i = 1; i < 10; ++i)
+        for (int i = 1; i <=6; ++i)
         {
             if (Input.GetKeyDown("" + i))
             {
