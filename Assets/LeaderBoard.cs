@@ -20,7 +20,6 @@ public class LeaderBoard : Singleton<LeaderBoard>
         dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
 
         fetchScore();
-        score.text = string.Format("Congratualtion, you helped the human to survive {0} seconds! May he live longer!", 10 * GameManager.Instance.score);
     }
 
 
@@ -47,6 +46,11 @@ public class LeaderBoard : Singleton<LeaderBoard>
 
     public void fetchScore()
     {
+        if (score)
+        {
+            score.text = string.Format("Congratualtion, you helped the human to survive {0} seconds! May he live longer!", 10 * GameManager.Instance.score);
+
+        }
         if (!dl)
         {
 

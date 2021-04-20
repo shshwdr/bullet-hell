@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    List<string> obstacleIntroduce = new List<string>()
-    {
-        "",
-        "Take care! Blood blobs will fly around!",
-        "Take care! Cholesterol will slow down the cell!",
-        "Take care! Alcohol will make your move not accurate!",
-    };
     public List<GameObject> obstacles;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +22,7 @@ public class ObstacleManager : MonoBehaviour
             {
                 rand = CheatManager.Instance.obstacleValue;
             }
-            HUD.Instance.updateObstacleLabel(obstacleIntroduce[rand]);
+            HUD.Instance.updateObstacleLabel(Dialogs. obstacleIntroduce[rand]);
             for(int i = 0;i< obstacles.Count; i++)
             {
                 if (i == rand)
@@ -38,6 +31,11 @@ public class ObstacleManager : MonoBehaviour
                     break;
                 }
             }
+        }
+        else
+        {
+
+            HUD.Instance.updateObstacleLabel("");
         }
     }
 

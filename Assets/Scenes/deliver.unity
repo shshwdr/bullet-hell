@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b25839ace75ea489019e45ae28c40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTargetValue: 4
+  levelTargetValue: 7
   levelName: 
   levelTime: 10
   currentTime: 0
@@ -262,6 +262,10 @@ PrefabInstance:
       value: -5.533332
       objectReference: {fileID: 0}
     - target: {fileID: 489992945056909559, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 489992945056909559, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
       objectReference: {fileID: 0}
@@ -332,6 +336,14 @@ PrefabInstance:
     - target: {fileID: 8091285534659997332, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091285536486947185, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091285536486947185, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff8e487cba5db074da5d494d75dd2406, type: 3}
@@ -605,7 +617,7 @@ PrefabInstance:
       objectReference: {fileID: 293285587378362195, guid: 80da94a5bfa93994ea8990eb789d945a, type: 3}
     - target: {fileID: 1827217091192896268, guid: 6f4fda8808d854a44a7a910aa05f76bb, type: 3}
       propertyPath: generateNumber
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1827217091192896269, guid: 6f4fda8808d854a44a7a910aa05f76bb, type: 3}
       propertyPath: m_RootOrder

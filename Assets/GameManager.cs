@@ -102,7 +102,6 @@ public class GameManager : Singleton<GameManager>
             //StartCoroutine(test(CheatManager.Instance.nextLevel));
         }else if (TutorialManager.Instance.isInTutorial)
         {
-            HUD.Instance.showTutorialMessage(Dialogs.tutorialStrings[TutorialManager.Instance.currentTutorialId]);
             currentLevelId = (int)TutorialManager.Instance.tutorialOrder[TutorialManager.Instance.currentTutorialId] + 1;
             SceneManager.LoadScene(currentLevelId);
         }
@@ -151,11 +150,9 @@ public class GameManager : Singleton<GameManager>
         {
             return;
         }
-        if (TutorialManager.Instance.isInTutorial)
-        {
-
-            TutorialManager.Instance.finishLevel();
-        }
+        //yield some time
+        finishedLevel = true;
+        HUD.Instance.winLoss(true);
         successedLevel++;
         isLevelPlayed[currentLevelId] = true;
         score += 1;
@@ -170,11 +167,10 @@ public class GameManager : Singleton<GameManager>
             HUD.Instance.resetDifficulty();
         }
         HUD.Instance.updateScore(score);
-        GameEventMessage.SendEvent("finishLevel");
 
         success = true;
         //SelectLevelAndStart();
-        finishLevel();
+        StartCoroutine(finishLevel());
     }
 
     public void FailedLevel()
@@ -183,14 +179,34 @@ public class GameManager : Singleton<GameManager>
         {
             return;
         }
-        HUD.Instance.resetDifficulty();
+        //yield some time
+        finishedLevel = true;
+        HUD.Instance.winLoss(false);
+        //HUD.Instance.resetDifficulty();
         currentPlayerHealth -= 1;
+        HUD.Instance.setHpRemaining(currentPlayerHealth);
         HUD.Instance.updateHealth(currentPlayerHealth);
 
         success = false;
+        StartCoroutine(finishLevel());
+
+    }
+
+
+    public virtual IEnumerator finishLevel()
+    {
+        if (TutorialManager.Instance.isInTutorial)
+        {
+
+            TutorialManager.Instance.finishLevel();
+        }
+        HUD.Instance.updateIntervalLevel();
+
+
+        yield return new WaitForSecondsRealtime(1);
         if (currentPlayerHealth == 0)
         {
-            Debug.Log("gameover");
+            //Debug.Log("gameover");
             leaderBoard.fetchScore();
             GameEventMessage.SendEvent("gameover");
         }
@@ -200,15 +216,6 @@ public class GameManager : Singleton<GameManager>
             GameEventMessage.SendEvent("finishLevel");
             //SelectLevelAndStart();
         }
-        finishLevel();
-    }
-
-
-    public virtual void finishLevel()
-    {
-        //yield some time
-        finishedLevel = true;
-        HUD.Instance.updateIntervalLevel();
     }
     // Update is called once per frame
     void Update()

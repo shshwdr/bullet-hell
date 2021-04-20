@@ -10,6 +10,6 @@ public class DeliverLevelManager : CollectLevelManager
 
         levelName = Dialogs.deliverLevelName;
         hud.updateTarget(string.Format(Dialogs.deliverLevelTarget, levelTargetValue),
-            string.Format(Dialogs.deliverLevelIntroduction, levelTargetValue));
+            string.Format(Dialogs.deliverLevelIntroduction, levelTargetValue),0);
     }
 }

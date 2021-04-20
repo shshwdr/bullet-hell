@@ -11,7 +11,7 @@ public class SurviveLevelManager : LevelManager
         base.Start();
         levelName = Dialogs.surviveLevelName;
         hud.updateTarget(string.Format(Dialogs.surviveLevelTarget, levelTime),
-            string.Format(Dialogs.surviveLevelIntroduction, levelTime));
+            string.Format(Dialogs.surviveLevelIntroduction, levelTime),3);
     }
 
     // Update is called once per frame

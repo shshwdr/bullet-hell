@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUD : Singleton<HUD>
 {
@@ -15,11 +16,24 @@ public class HUD : Singleton<HUD>
     public DSPlayerController player;
     public LevelManager levelManager;
 
-    [SerializeField] TMP_Text intervalLabel;
-    [SerializeField] TMP_Text difficultyLabel;
     [SerializeField] TMP_Text tutorialLabel;
+
+    //for new level
+
+    [SerializeField] TMP_Text intervalAfterTitle;
     [SerializeField] TMP_Text intervalAfterLabel;
     [SerializeField] TMP_Text intervalAfterLabelObstacle;
+    [SerializeField] Image levelIcon;
+    [SerializeField] List<Sprite> levelIcons;
+
+    //for level finish
+
+    [SerializeField] GameObject winMenu;
+    [SerializeField] GameObject lossMenu;
+    [SerializeField] TMP_Text intervalLabel;
+    [SerializeField] TMP_Text difficultyLabel;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +58,7 @@ public class HUD : Singleton<HUD>
     {
         if (timeLabel)
         {
-            timeLabel.text = "Timer: " + currentTime;
+            timeLabel.text = "Timer: " + currentTime.ToString("F2");
 
         }
         else
@@ -80,12 +94,14 @@ public class HUD : Singleton<HUD>
         }
     }
 
-    public void updateTarget(string target, string introduction)
+    public void updateTarget(string target, string introduction, int spriteId)
     {
         if (targetLabel)
         {
             targetLabel.text = target;
+            intervalAfterTitle.text = target;
             intervalAfterLabel.text = introduction;
+            levelIcon.sprite = levelIcons[spriteId];
 
         }
         else
@@ -109,19 +125,19 @@ public class HUD : Singleton<HUD>
 
     public void updateIntervalLevel()
     {
-        if (intervalLabel)
-        {
-            if (GameManager.Instance.success)
-            {
+        //if (intervalLabel)
+        //{
+        //    if (GameManager.Instance.success)
+        //    {
 
-                intervalLabel.text = "You SUCCEED in " + levelManager.levelName + " level";
-            }
-            else
-            {
-                intervalLabel.text = "You FAILED in " + levelManager.levelName + " level";
+        //        intervalLabel.text = "You SUCCEED in " + levelManager.levelName + " level";
+        //    }
+        //    else
+        //    {
+        //        intervalLabel.text = "You FAILED in " + levelManager.levelName + " level";
 
-            }
-        }
+        //    }
+        //}
 
 
     }
@@ -132,7 +148,7 @@ public class HUD : Singleton<HUD>
         if (difficultyLabel)
         {
 
-            difficultyLabel.text = "Difficulty increased!";
+            difficultyLabel.text = Dialogs.difficultyIncrease;
             
         }
     }
@@ -147,6 +163,37 @@ public class HUD : Singleton<HUD>
         }
     }
 
+    public void setHpRemaining(int hp)
+    {
+        if (difficultyLabel)
+        {
+
+            difficultyLabel.text = string.Format( Dialogs.remainHP, hp);
+
+        }
+    }
+
+    public void winLoss(bool isWin)
+    {
+        if (!winMenu)
+        {
+            return;
+        }
+        winMenu.SetActive(false);
+
+        lossMenu.SetActive(false);
+        if (isWin)
+        {
+            winMenu.SetActive(true);
+            intervalLabel.text = Dialogs.succeed;
+        }
+        else
+        {
+            lossMenu.SetActive(true);
+            intervalLabel.text = Dialogs.failed;
+        }
+    }
+
     public void clearTutorialMessage()
     {
         if (tutorialLabel)
@@ -156,12 +203,16 @@ public class HUD : Singleton<HUD>
 
         }
     }
-    public void showTutorialMessage(string s)
+    public void showTutorialMessage()
     {
         if (tutorialLabel)
         {
+            if (TutorialManager.Instance.isInTutorial)
+            {
 
-            tutorialLabel.text = s;
+                tutorialLabel.text = Dialogs.tutorialStrings[TutorialManager.Instance.currentTutorialId];
+            }
+
 
         }
     }

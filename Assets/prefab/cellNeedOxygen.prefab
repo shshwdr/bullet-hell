@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 293285587378362192}
   - component: {fileID: 293285587378362206}
   - component: {fileID: 293285587378362207}
+  - component: {fileID: -341475949903601901}
   m_Layer: 0
   m_Name: cellNeedOxygen
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 98448a91502e9584e9c3cad8880aab74, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4811321, g: 0.374466, b: 0.374466, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,6 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e91ebedb919d1a409793df0c0389d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1
+  frequency: 1
+  magnitude: 1
+  shouldDestory: 0
 --- !u!60 &293285587378362207
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +139,24 @@ PolygonCollider2D:
       - {x: 0.385, y: -0.19999999}
       - {x: 0.385, y: 0.14}
       - {x: 0.325, y: 0.22}
+--- !u!50 &-341475949903601901
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293285587378362195}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

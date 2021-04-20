@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
 
     public virtual void startLevel()
     {
-        currentTime = levelTime;
+        currentTime = 10;
         startTime = false;
         HUD.Instance.updateTimer(currentTime);
     }
