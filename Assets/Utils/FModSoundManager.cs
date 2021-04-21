@@ -13,7 +13,7 @@ public class FModSoundManager : Singleton<FModSoundManager>
     FMOD.Studio.EventInstance ambience;
     int currentId = 0;
     float volumnValue = 0.2f;
-    float defaultVolumn = 1f;
+    public float defaultVolumn = 0.2f;
     public bool pressedStart = false;
     bool finished = false;
     //[FMODUnity.EventRef]
@@ -101,7 +101,6 @@ public class FModSoundManager : Singleton<FModSoundManager>
         {
             loaded = true;
             Debug.Log("Master Bank Loaded");
-            startEvent("event:/Bullet Hell Music");
             setDifficultyParam(0);
             finished = true;
             //SceneManager.LoadScene(1);

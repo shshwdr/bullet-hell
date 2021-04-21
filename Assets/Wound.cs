@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wound : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer renderer;
+    [SerializeField] GameObject deathAnim;
 
     int needed = 2;
     // Start is called before the first frame update
@@ -28,6 +30,12 @@ public class Wound : MonoBehaviour
         if(needed == 0)
         {
             ((PairLevelManager)GameManager.Instance.currentLevel).pair();
+
+            renderer.enabled = false;
+            deathAnim.SetActive(true);
+           // deathAnim.transform.position = renderer.gameObject.transform.position;
+            //deathAnim.transform.rotation = renderer.transform.rotation;
+            //deathAnim.transform.localScale = renderer.transform.localScale;
         }
     }
 

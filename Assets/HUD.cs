@@ -61,12 +61,12 @@ public class HUD : Singleton<HUD>
         if (timeLabel)
         {
             timeLabel.text = "Timer: " + currentTime.ToString("F2");
-            if(currentTime<= currentPunch)
-            {
+            //if(currentTime<= currentPunch && currentPunch>=0.5f)
+            //{
 
-               //// timeLabel.transform.DOPunchScale(new Vector3(0.4f, 0.2f, 0.2f),0.2f).SetUpdate(true);
-                //currentPunch -= 1;
-            }
+            //    timeLabel.transform.DOPunchScale(new Vector3(0.4f, 0.2f, 0.2f),0.2f).SetUpdate(true);
+            //    currentPunch -= 1;
+            //}
 
         }
         else
@@ -104,12 +104,20 @@ public class HUD : Singleton<HUD>
         }
     }
 
-    public void updateTarget(string target, string introduction, int spriteId)
+    public void updateTargetOnly(string target)
     {
         if (targetLabel)
         {
             targetLabel.text = target;
-            intervalAfterTitle.text = target;
+        }
+    }
+
+    public void updateTarget(string title, string target, string introduction, int spriteId)
+    {
+        if (targetLabel)
+        {
+            targetLabel.text = target;
+            intervalAfterTitle.text = title;
             intervalAfterLabel.text = introduction;
             levelIcon.sprite = levelIcons[spriteId];
 

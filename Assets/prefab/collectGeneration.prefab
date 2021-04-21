@@ -75,10 +75,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247bf2e326294074da2ecb823386da71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionItem: {fileID: 293285587378362195, guid: 6ed047862e67c494aa5f219f0dfb7bd4,
-    type: 3}
+  collectionItem: {fileID: 293285587378362195, guid: 6ed047862e67c494aa5f219f0dfb7bd4, type: 3}
   topRight: {fileID: 1827217089842535144}
   bottomLeft: {fileID: 1827217091361096375}
+  playerDistance: 5
+  generateNumber: -1
 --- !u!1 &1827217091361096372
 GameObject:
   m_ObjectHideFlags: 0

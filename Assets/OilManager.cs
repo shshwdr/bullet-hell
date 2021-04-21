@@ -11,9 +11,16 @@ public class OilManager : MonoBehaviour
     [SerializeField] List<Sprite> oilSprites;
     [SerializeField] List<Sprite> drunkSprites;
     SpriteRenderer spriteRenderer;
+
+
+
+    AudioSource audioSource;
+
+    [SerializeField] List<AudioClip> clips;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         if(effectType == 0)
         {
@@ -29,6 +36,15 @@ public class OilManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.GetComponent<DSPlayerController>())
+        {
+            audioSource.PlayOneShot(clips[effectType]);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

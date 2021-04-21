@@ -8,7 +8,7 @@ public class PairLevelManager : LevelManager
     {
         base.Start();
         levelName = Dialogs.fixLevelName;
-        hud.updateTarget(string.Format(Dialogs.fixLevelTarget, levelTime),
+        hud.updateTarget(Dialogs.fixLevelName,string.Format(Dialogs.fixLevelTarget, levelTime),
             string.Format(Dialogs.fixLevelIntroduction, levelTime),5);
     }
     public void pair()

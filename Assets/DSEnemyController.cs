@@ -9,12 +9,22 @@ public class DSEnemyController : HPCharacterController
     [SerializeField] float distanceToPlayer = 10f;
     [SerializeField] float walkSpeed = 1f;
     [SerializeField] float bulletSpeed = 10f;
+    [SerializeField] GameObject live;
+    [SerializeField] GameObject deathAnim;
+
+    AudioSource audioSource;
+
+    //[SerializeField] AudioClip die;
 
 
     [SerializeField] EnemyType enemyType;
 
     // Start is called before the first frame update
-
+    protected override void Awake()
+    {
+        base.Awake();
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerBullet")
@@ -27,13 +37,23 @@ public class DSEnemyController : HPCharacterController
     protected override void Die()
     {
         base.Die();
-        Destroy(gameObject);
+        audioSource.Play();
+        live.SetActive(false);
+        deathAnim.SetActive(true);
+        deathAnim.transform.position = live.gameObject.transform.position;
+        deathAnim.transform.rotation = live.transform.rotation;
+        deathAnim.transform.localScale = live.transform.localScale;
+
+
+        //Destroy(gameObject);
         //GetComponent<BulletHell.ProjectileEmitterBase>().isStopped = true;
-        if(GameManager.Instance.currentLevel is killEnemyLevelManager)
+        if (GameManager.Instance.currentLevel is killEnemyLevelManager)
         {
             CollectionGeneration.Instance.generate();
             CollectionGeneration.Instance.collect();
         }
+
+        this.enabled = false;
     }
 
     // Update is called once per frame

@@ -12,12 +12,17 @@ public class Collectable : MonoBehaviour
     [SerializeField] bool shouldDestory = true;
     bool hasTriggered = false;
 
+    AudioSource audioSource;
+
+    [SerializeField] SpriteRenderer renderer;
+    [SerializeField] GameObject deathAnim;
 
     int dir = 1;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentTime = 0;
         pos = transform.position;
         rb = GetComponent<Rigidbody2D>();
@@ -54,13 +59,29 @@ public class Collectable : MonoBehaviour
             if (shouldDestory)
             {
 
-                Destroy(gameObject);
+                GetComponent<SpriteRenderer>().enabled = false;
             }
             else
             {
+
+                if (deathAnim)
+                {
+                    renderer.enabled = false;
+                    deathAnim.SetActive(true);
+                    deathAnim.transform.position = renderer.gameObject.transform.position;
+                    deathAnim.transform.rotation = renderer.transform.rotation;
+                    deathAnim.transform.localScale = renderer.transform.localScale;
+                }
+
                 GetComponent<SpriteRenderer>().color = Color.white;
                 hasTriggered = false;
                 this.enabled = false;
+
+
+            }
+            if (audioSource)
+            {
+                audioSource.Play();
             }
         }
     }

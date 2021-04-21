@@ -33,10 +33,10 @@ public class CheatManager : Singleton<CheatManager>
             GameManager.Instance.currentPlayerHealth += 1;
             HUD.Instance.updateHealth(GameManager.Instance.currentPlayerHealth);
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            infiniteHPInLevel = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    infiniteHPInLevel = true;
+        //}
         if (Input.GetKeyDown(KeyCode.N))
         {
             GameManager.Instance.currentLevel.succeedLevel();

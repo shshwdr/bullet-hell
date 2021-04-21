@@ -20,13 +20,28 @@ public class DSPlayerController : HPCharacterController
     [SerializeField] float oilSlowDown = 0.5f;
 
 
+    [SerializeField] AudioClip outClip;
+
+
     [SerializeField] GameObject drunkEffect;
     float drunkEffectTime = -1;
     bool drunkEffectIsOn = false;
 
-    Rigidbody2D rb; 
+    Rigidbody2D rb;
     Sequence sequence;
+    Sequence shakeSequence;
     [SerializeField] SpriteRenderer redBloodSprite;
+    [SerializeField] SpriteRenderer arrowSprite;
+    [SerializeField] SpriteRenderer cellSprite;
+    [SerializeField] GameObject dieAnimation;
+    [SerializeField] Sprite oilArrow;
+    [SerializeField] Sprite drunkArrow;
+    [SerializeField] Sprite normalArrow;
+
+    AudioSource audioSource;
+    [SerializeField] AudioClip bounceClip;
+    [SerializeField] AudioClip shootClip;
+
 
     public bool isMirrorPlayer;
 
@@ -35,6 +50,7 @@ public class DSPlayerController : HPCharacterController
     public bool willShoot = false;
 
     Vector3 originPosition;
+    Vector3 originScale;
 
     public float actionInvertal = 0.35f;
     float currentActionTime = 100;
@@ -53,6 +69,8 @@ public class DSPlayerController : HPCharacterController
         var player = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         levelManager = player;
         collect(0);
+        originScale = cellSprite.transform.localScale;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -61,11 +79,14 @@ public class DSPlayerController : HPCharacterController
         oilEffect.SetActive(true);
         oilEffectIsOn = true;
         oilEffectTime = t;
+        arrowSprite.sprite = oilArrow;
     }
     public void removeOilEffect()
     {
         oilEffect.SetActive(false);
         oilEffectIsOn = false;
+        arrowSprite.sprite = normalArrow;
+        audioSource.PlayOneShot(outClip);
     }
 
     public void addDrunkEffect(float t)
@@ -73,11 +94,14 @@ public class DSPlayerController : HPCharacterController
         drunkEffect.SetActive(true);
         drunkEffectIsOn = true;
         drunkEffectTime = t;
+        arrowSprite.sprite = drunkArrow;
     }
     public void removeDrunkEffect()
     {
         drunkEffect.SetActive(false);
         drunkEffectIsOn = false;
+        arrowSprite.sprite = normalArrow;
+        audioSource.PlayOneShot(outClip);
     }
     Color redBloodColor(float ratio)
     {
@@ -114,9 +138,17 @@ public class DSPlayerController : HPCharacterController
 
         Time.timeScale = 0f;
         sequence.Kill();
+        shakeSequence.Kill();
         clearVelocity();
 
         GameManager.Instance.FailedLevel();
+
+        cellSprite.gameObject. SetActive(false);
+        dieAnimation.SetActive(true);
+        dieAnimation.transform.position = cellSprite.gameObject.transform.position;
+        dieAnimation.transform.rotation = cellSprite.transform.rotation;
+        dieAnimation.transform.localScale = cellSprite.transform.localScale;
+
 
         //GameEventMessage.SendEvent("gameover");
         //Destroy(gameObject);
@@ -207,10 +239,15 @@ public class DSPlayerController : HPCharacterController
             }
             Time.timeScale = 1;
             sequence.Kill();
+            shakeSequence.Kill();
+
             clearVelocity();
 
 
-            transform.DOShakeScale(0.3f,0.9f);
+            cellSprite.transform.localScale = originScale;
+
+            shakeSequence = DOTween.Sequence();
+            shakeSequence.Append(cellSprite.transform.DOShakeScale(0.3f, 0.6f));
             //transform.DOPunchScale(new Vector3(0.2f,0.2f,0.2f), 0.2f);
             var dir = getMouseDirection() * moveDistance * (oilEffectIsOn ? oilSlowDown : 1) * (drunkEffectIsOn ? -1 : 1);
 
@@ -236,15 +273,21 @@ public class DSPlayerController : HPCharacterController
         //}
         else if (canShoot() && Input.GetMouseButtonDown(1))
         {
+            audioSource.PlayOneShot(shootClip);
             currentActionTime = 0;
-            transform.DOShakeScale(0.3f,0.8f);
             if (TutorialManager.Instance.isInTutorial)
             {
                 TutorialManager.Instance.rightClick();
             }
             Time.timeScale = 1;
+            shakeSequence.Kill();
             sequence.Kill();
+            cellSprite.transform.localScale = originScale;
             clearVelocity();
+
+            shakeSequence = DOTween.Sequence();
+            shakeSequence.Append(cellSprite.transform.DOShakeScale(0.3f, 0.6f));
+            
             //add back force?
             var bullet = PoolsManager.Instance.bulletManager.getItem();
             bullet.SetActive(true);
@@ -287,9 +330,13 @@ public class DSPlayerController : HPCharacterController
         Time.fixedDeltaTime = Time.timeScale * 0.01f;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        audioSource.PlayOneShot(bounceClip);
+    }
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
-    //    if(collision.tag == "Wound" && GameManager.Instance.currentLevel is PairLevelManager)
+    //    if (collision.tag == "Wound" && GameManager.Instance.currentLevel is PairLevelManager)
     //    {
     //        ((PairLevelManager)GameManager.Instance.currentLevel).pair();
     //    }

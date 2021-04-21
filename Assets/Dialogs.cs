@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Dialogs : MonoBehaviour
 {
+    static public string progress = " ({1}/{0})";
     static public string surviveLevelName = "Autoimmune Rampage";
     static public string surviveLevelIntroduction = "The immune system has gone rogue and is attacking the blood cells! You, the red blood cell, has to <color=red>stay alive</color>!";
     static public string surviveLevelTarget = "Survive {0} Seconds";
 
     static public string collectLevelName = "Collect Oxygen";
     static public string collectLevelIntroduction = "You are a Red blood cell, and your job is to <color=blue>collect oxygen</color>. Hurry, the other cells are counting on you!";
-    static public string collectLevelTarget = "Collect {0} Oxygen";
+    static public string collectLevelTarget = "Collect {0} Oxygen"+ progress;
 
     static public string deliverLevelName = "Deliver Oxygen";
     static public string deliverLevelIntroduction = "You are a Red blood cell, and your job is to <color=blue>deliver oxygen</color> to the other cells in the body!";
-    static public string deliverLevelTarget = "Deliver {0} Oxygen";
+    static public string deliverLevelTarget = "Deliver {0} Oxygen"+ progress;
 
     static public string shootLevelName = "Virus Invasion";
-    static public string shootLevelIntroduction = "You are a B-cell, a type of white blood cell. Using right click, <color=red>shoot antibodies</color> at a virus to kill it!";
-    static public string shootLevelTarget = "Kill {0} Virus";
+    static public string shootLevelIntroduction = "You are a B-cell, a type of white blood cell. Using right click, <color=red>shoot antibodies</color> at a virus to kill them!";
+    static public string shootLevelTarget = "Kill {0} Virus"+ progress;
 
     static public string devourLevelName = "Cell Mutation";
     static public string devourLevelIntroduction = "You are a Macrophage, a type of white blood cell. Macrophages can touch mutated cells to <color=red>destroy them</color>.";
-    static public string devourLevelTarget = "Destroy {0} Cell";
+    static public string devourLevelTarget = "Devour {0} Cell"+ progress;
 
     static public string fixLevelName = "Wounded";
     static public string fixLevelIntroduction = "You are a Platelet. Multiple platelets combine into a blood clot to <color=red>seal a wound</color>";

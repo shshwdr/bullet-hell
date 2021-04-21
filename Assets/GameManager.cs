@@ -54,6 +54,9 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
+
+        FModSoundManager.Instance. startEvent("event:/Bullet Hell Music");
+        FModSoundManager.Instance.Pause();
         currentPlayerHealth = playerHealth;
         score = 0;
         successedLevel = 0;
@@ -159,6 +162,7 @@ public class GameManager : Singleton<GameManager>
         {
             return;
         }
+        SFXManager.Instance.playVictory();
         //yield some time
         finishedLevel = true;
         HUD.Instance.winLoss(true);
@@ -188,6 +192,7 @@ public class GameManager : Singleton<GameManager>
         {
             return;
         }
+        SFXManager.Instance.playFail();
         //yield some time
         finishedLevel = true;
         HUD.Instance.winLoss(false);
@@ -221,7 +226,16 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
+            if (success)
+            {
 
+                SFXManager.Instance.playVictoryWindow();
+            }
+            else
+            {
+
+                SFXManager.Instance.playFailWindow();
+            }
             GameEventMessage.SendEvent("finishLevel");
             //SelectLevelAndStart();
         }

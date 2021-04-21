@@ -11,13 +11,18 @@ public class CollectLevelManager : LevelManager
         base.Start();
 
         levelName = Dialogs.collectLevelName;
-        hud.updateTarget(string.Format(Dialogs.collectLevelTarget, levelTargetValue),
-            string.Format(Dialogs.collectLevelIntroduction, levelTargetValue),2);
+        hud.updateTarget(Dialogs.collectLevelName, string.Format(Dialogs.collectLevelTarget, levelTargetValue, currentCollectValue),
+            string.Format(Dialogs.collectLevelIntroduction, levelTargetValue), 2);
     }
 
+    protected virtual void updateTarget()
+    {
+        hud.updateTargetOnly(string.Format(Dialogs.collectLevelTarget, levelTargetValue, currentCollectValue));
+    }
     public void collect()
     {
         currentCollectValue++;
+        updateTarget();
         GameManager.Instance.player.collect(currentCollectValue/(float)levelTargetValue);
         if (currentCollectValue>=levelTargetValue)
         {

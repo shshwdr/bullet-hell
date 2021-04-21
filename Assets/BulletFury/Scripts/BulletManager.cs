@@ -12,6 +12,9 @@ namespace BulletFury
 {
     public class BulletManager : MonoBehaviour
     {
+
+        AudioSource audioSource;
+        [SerializeField] AudioClip shootClip;
         #region Serialized Fields
         // <----- Serialized Fields ----->
         // the maximum amount of bullets this bullet manager can show
@@ -70,6 +73,7 @@ namespace BulletFury
         /// </summary>
         private void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
             _bullets = new BulletContainer[maxBullets];
             _matrices = new Matrix4x4[maxBullets];
             _colors = new Vector4[maxBullets];
@@ -233,6 +237,11 @@ namespace BulletFury
             StartCoroutine(SpawnIE(position, forward));
         }
         
+        public void playShootSound()
+        {
+
+            audioSource.Play();
+        }
         private IEnumerator SpawnIE(Vector3 position, Vector3 forward)
         {
             //spriteRenderer
@@ -244,7 +253,10 @@ namespace BulletFury
             for (int burstNum = 0; burstNum < spawnSettings.BurstCount; ++burstNum)
             {
                 transform.DOShakeScale(0.3f, 0.9f);
-
+                var t = new BulletContainer
+                {
+                };
+                OnBulletSpawned?.Invoke(t);
                 // wait a little bit before doing the next burst
                 yield return new WaitForSeconds(spawnSettings.BurstDelay);
                 // make sure the positions and rotations are clear before doing anything
@@ -301,7 +313,6 @@ namespace BulletFury
                         _bullets[j] = newContainer;
                         break;
                     }
-                    OnBulletSpawned?.Invoke(newContainer);
                 }
                 
             }

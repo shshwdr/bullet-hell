@@ -81,8 +81,7 @@ public class LeaderBoard : Singleton<LeaderBoard>
         foreach (LB_Entry entry in entries)
         {
             // here you can fill your List on your UI
-            Debug.Log("Rank: " + entry.rank + "; Name: " + entry.name +
-            "; Points: " + entry.points);
+           // Debug.Log("Rank: " + entry.rank + "; Name: " + entry.name + "; Points: " + entry.points);
         }
 
         foreach (Transform child in leaderboardList)

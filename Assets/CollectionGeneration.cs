@@ -8,7 +8,7 @@ public class CollectionGeneration : Singleton<CollectionGeneration>
     CollectLevelManager levelManager;
     [SerializeField] Transform topRight;
     [SerializeField] Transform bottomLeft;
-    [SerializeField] float playerDistance = 1;
+     float playerDistance = 5;
     [SerializeField] int generateNumber = -1;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class CollectionGeneration : Singleton<CollectionGeneration>
         if(generateNumber == -1)
         {
 
+            generate();
             generate();
         }
         else
@@ -59,11 +60,14 @@ public class CollectionGeneration : Singleton<CollectionGeneration>
         for(int i = 0;i< generateNumber; i++)
         {
             Vector3 position = new Vector3(Random.Range(bottomLeft.position.x, topRight.position.x), Random.Range(bottomLeft.position.y, topRight.position.y), 0);
+            int loopTime = 100;
             //if position too close to player, retry
-            while (!isValidPosition(position, positions))
+            while (!isValidPosition(position, positions) && loopTime>=0)
             {
                 position = new Vector3(Random.Range(bottomLeft.position.x, topRight.position.x), Random.Range(bottomLeft.position.y, topRight.position.y), 0);
+                loopTime--;
             }
+            positions.Add(position);
             GameObject collection = Instantiate(collectionItem, position, Quaternion.identity);
         }
     }

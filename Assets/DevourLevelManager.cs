@@ -10,7 +10,11 @@ public class DevourLevelManager : CollectLevelManager
 
         levelTargetValue = GameManager.Instance.difficulty + 1;
         levelName = Dialogs.devourLevelName;
-        hud.updateTarget(string.Format(Dialogs.devourLevelTarget, levelTargetValue),
+        hud.updateTarget(Dialogs.devourLevelName,string.Format(Dialogs.devourLevelTarget, levelTargetValue,currentCollectValue),
             string.Format(Dialogs.devourLevelIntroduction, levelTargetValue),1);
+    }
+    protected override void updateTarget()
+    {
+        hud.updateTargetOnly(string.Format(Dialogs.devourLevelTarget, levelTargetValue, currentCollectValue));
     }
 }
