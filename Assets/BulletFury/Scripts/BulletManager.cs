@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BulletFury.Data;
 using BulletFury.Rendering;
+using DG.Tweening;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace BulletFury
         // render priority. Higher number = drawn on top.
         [SerializeField] private int drawPriority = 0;
         public bool isStopped = true;
+
+        SpriteRenderer spriteRenderer;
 
         // the settings for the bullet's behaviour over time
         [SerializeField] private BulletSettings bulletSettings = null;
@@ -77,6 +80,7 @@ namespace BulletFury
             {
                 _currentTime = spawnSettings.FireRate;
             }
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         /// <summary>
@@ -231,12 +235,18 @@ namespace BulletFury
         
         private IEnumerator SpawnIE(Vector3 position, Vector3 forward)
         {
+            //spriteRenderer
+
             // keep a list of positions and rotations, so we can update the bullets all at once
             var positions = new List<Vector3>();
             var rotations = new List<Quaternion>();
 
             for (int burstNum = 0; burstNum < spawnSettings.BurstCount; ++burstNum)
             {
+                transform.DOShakeScale(0.3f, 0.9f);
+
+                // wait a little bit before doing the next burst
+                yield return new WaitForSeconds(spawnSettings.BurstDelay);
                 // make sure the positions and rotations are clear before doing anything
                 positions.Clear();
                 rotations.Clear();
@@ -294,8 +304,6 @@ namespace BulletFury
                     OnBulletSpawned?.Invoke(newContainer);
                 }
                 
-                // wait a little bit before doing the next burst
-                yield return new WaitForSeconds(spawnSettings.BurstDelay);
             }
         }
         

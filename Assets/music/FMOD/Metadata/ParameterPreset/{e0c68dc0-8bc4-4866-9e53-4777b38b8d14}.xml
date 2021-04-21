@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{e0c68dc0-8bc4-4866-9e53-4777b38b8d14}">
+		<property name="name">
+			<value>To Difficulty 1</value>
+		</property>
+		<relationship name="folder">
+			<destination>{36152f22-2ed3-4560-9bd1-f70047437299}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{890d37f5-cb61-4dac-a42b-cb39fd6b7168}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{890d37f5-cb61-4dac-a42b-cb39fd6b7168}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.50999999046325684</value>
+		</property>
+	</object>
+</objects>

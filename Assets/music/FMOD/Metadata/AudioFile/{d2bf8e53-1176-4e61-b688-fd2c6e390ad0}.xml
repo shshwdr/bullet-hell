@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{d2bf8e53-1176-4e61-b688-fd2c6e390ad0}">
+		<property name="assetPath">
+			<value>Bullet Hell Music - Difficulty 3.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>132.92308390022677</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{4b8c247c-0243-46ab-9d58-8281100f26ea}</destination>
+		</relationship>
+	</object>
+</objects>

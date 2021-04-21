@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class HUD : Singleton<HUD>
     [SerializeField] TMP_Text intervalLabel;
     [SerializeField] TMP_Text difficultyLabel;
 
+    int currentPunch = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,12 @@ public class HUD : Singleton<HUD>
         if (timeLabel)
         {
             timeLabel.text = "Timer: " + currentTime.ToString("F2");
+            if(currentTime<= currentPunch)
+            {
+
+               //// timeLabel.transform.DOPunchScale(new Vector3(0.4f, 0.2f, 0.2f),0.2f).SetUpdate(true);
+                //currentPunch -= 1;
+            }
 
         }
         else
@@ -72,6 +80,7 @@ public class HUD : Singleton<HUD>
         if (healthLabel)
         {
             healthLabel.text = "Health: " + currentTime;
+            healthLabel.transform.DOPunchScale(new Vector3(0.5f, 0.2f, 0.2f), 0.2f).SetUpdate(true);
 
         }
         else
@@ -87,6 +96,7 @@ public class HUD : Singleton<HUD>
         {
             scoreLabel.text = "Score: " + currentTime;
 
+            scoreLabel.transform.DOPunchScale(new Vector3(0.5f, 0.2f, 0.2f), 0.2f).SetUpdate(true);
         }
         else
         {
@@ -163,6 +173,7 @@ public class HUD : Singleton<HUD>
         }
     }
 
+
     public void setHpRemaining(int hp)
     {
         if (difficultyLabel)
@@ -175,6 +186,7 @@ public class HUD : Singleton<HUD>
 
     public void winLoss(bool isWin)
     {
+        currentPunch = 5;
         if (!winMenu)
         {
             return;

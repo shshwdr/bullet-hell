@@ -35,6 +35,9 @@ public class DSPlayerController : HPCharacterController
     public bool willShoot = false;
 
     Vector3 originPosition;
+
+    public float actionInvertal = 0.35f;
+    float currentActionTime = 100;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -96,7 +99,7 @@ public class DSPlayerController : HPCharacterController
     }
     protected override void Die()
     {
-
+        currentActionTime = 100;
         if (CheatManager.Instance.infiniteHPInLevel)
         {
             return;
@@ -171,7 +174,7 @@ public class DSPlayerController : HPCharacterController
         {
             return;
         }
-
+        currentActionTime += Time.deltaTime;
         if (oilEffectIsOn)
         {
             oilEffectTime -= Time.deltaTime;
@@ -191,9 +194,13 @@ public class DSPlayerController : HPCharacterController
         }
 
         arrow.up = getMouseDirection();
-
+        if (currentActionTime <= actionInvertal)
+        {
+           // return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
+            currentActionTime = 0;
             if (TutorialManager.Instance.isInTutorial)
             {
                 TutorialManager.Instance.leftClick();
@@ -203,6 +210,8 @@ public class DSPlayerController : HPCharacterController
             clearVelocity();
 
 
+            transform.DOShakeScale(0.3f,0.9f);
+            //transform.DOPunchScale(new Vector3(0.2f,0.2f,0.2f), 0.2f);
             var dir = getMouseDirection() * moveDistance * (oilEffectIsOn ? oilSlowDown : 1) * (drunkEffectIsOn ? -1 : 1);
 
             rb.AddForce(dir, ForceMode2D.Impulse);
@@ -227,6 +236,8 @@ public class DSPlayerController : HPCharacterController
         //}
         else if (canShoot() && Input.GetMouseButtonDown(1))
         {
+            currentActionTime = 0;
+            transform.DOShakeScale(0.3f,0.8f);
             if (TutorialManager.Instance.isInTutorial)
             {
                 TutorialManager.Instance.rightClick();

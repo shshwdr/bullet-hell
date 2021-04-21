@@ -122,7 +122,7 @@ public class dreamloLeaderBoard : MonoBehaviour {
 		{
 			yield return www.SendWebRequest();
 			highScores = www.downloadHandler.text;
-			leaderBoard.updateLeaderBoardList();
+			//leaderBoard.updateLeaderBoardList();
 		}
 	}
 	

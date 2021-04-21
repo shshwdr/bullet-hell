@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
         currentTime = 10;
         startTime = false;
         HUD.Instance.updateTimer(currentTime);
+        FModSoundManager.Instance.Resume();
     }
 
     public virtual void startLevelMove()

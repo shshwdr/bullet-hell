@@ -13,14 +13,24 @@ public class LeaderBoard : Singleton<LeaderBoard>
 
     public GameObject submitButton;
 
-    dreamloLeaderBoard dl;
+    //dreamloLeaderBoard dl;
     // Start is called before the first frame update
     void Start()
     {
-        dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
+        //dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
 
-        fetchScore();
+        //fetchScore();
+        LB_Controller.OnUpdatedScores += OnLeaderboardUpdated;
+        LB_Controller.instance.ReloadLeaderboard();
+
     }
+
+    
+    private void OnDestroy()
+    {
+        LB_Controller.OnUpdatedScores -= OnLeaderboardUpdated;
+    }
+
 
 
     string playerName = "";
@@ -29,14 +39,20 @@ public class LeaderBoard : Singleton<LeaderBoard>
     {
         playerName = inputName.text;
 
-        if (dl.publicCode == "") Debug.LogError("You forgot to set the publicCode variable");
-        if (dl.privateCode == "") Debug.LogError("You forgot to set the privateCode variable");
+        //if (dl.publicCode == "") Debug.LogError("You forgot to set the publicCode variable");
+        //if (dl.privateCode == "") Debug.LogError("You forgot to set the privateCode variable");
         if(playerName == "")
         {
             return;
         }
+        if(GameManager.Instance.score == 0)
+        {
+            return;
+        }
         submitButton.SetActive(false);
-        dl.AddScore(playerName, (int)GameManager.Instance.score);
+        LB_Controller.instance.StoreScore((int)GameManager.Instance.score * 10, playerName);
+        //LB_Controller.instance.ReloadLeaderboard();
+        //dl.AddScore(playerName, (int)GameManager.Instance.score*10);
     }
 
     public void showButton()
@@ -51,48 +67,83 @@ public class LeaderBoard : Singleton<LeaderBoard>
             score.text = string.Format("Congratualtion, you helped the human to survive {0} seconds! May he live longer!", 10 * GameManager.Instance.score);
 
         }
-        if (!dl)
-        {
+        LB_Controller.instance.ReloadLeaderboard();
+        //    //if (!dl)
+        //    //{
 
-            dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
+        //    //    dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
+        //    //}
+        //    //dl.GetScores();
         }
-        dl.GetScores();
-    }
 
-    public void updateLeaderBoardList()
+        private void OnLeaderboardUpdated(LB_Entry[] entries)
     {
-        List<dreamloLeaderBoard.Score> scoreList = dl.ToListHighToLow();
-        if (scoreList == null)
+        foreach (LB_Entry entry in entries)
         {
-            //GUILayout.Label("(loading...)");
+            // here you can fill your List on your UI
+            Debug.Log("Rank: " + entry.rank + "; Name: " + entry.name +
+            "; Points: " + entry.points);
         }
-        else
+
+        foreach (Transform child in leaderboardList)
         {
-            foreach (Transform child in leaderboardList)
-            {
-                child.gameObject.SetActive(false);
-               // GameObject.Destroy(child.gameObject);
-            }
-            int maxToDisplay = leaderboardList.childCount;
-            int count = 0;
-            foreach (dreamloLeaderBoard.Score currentScore in scoreList)
-            {
-                var row = leaderboardList.GetChild(count).gameObject;
-                row.SetActive(true);
-                row.GetComponent<LeaderBoardRow>().score.text = currentScore.score.ToString();
-                row.GetComponent<LeaderBoardRow>().Name.text = currentScore.playerName;
+            child.gameObject.SetActive(false);
+            // GameObject.Destroy(child.gameObject);
+        }
+        int maxToDisplay = leaderboardList.childCount;
+        int count = 0;
+        foreach (LB_Entry entry in entries)
+        {
+            var row = leaderboardList.GetChild(count).gameObject;
+            row.SetActive(true);
+            row.GetComponent<LeaderBoardRow>().score.text = entry.points.ToString();
+            row.GetComponent<LeaderBoardRow>().Name.text = entry.name;
 
 
-                count++;
-                //GUILayout.BeginHorizontal();
-                //GUILayout.Label(currentScore.playerName, width200);
-                //GUILayout.Label(currentScore.score.ToString(), width200);
-                //GUILayout.EndHorizontal();
+            count++;
+            //GUILayout.BeginHorizontal();
+            //GUILayout.Label(currentScore.playerName, width200);
+            //GUILayout.Label(currentScore.score.ToString(), width200);
+            //GUILayout.EndHorizontal();
 
-                if (count >= maxToDisplay) break;
-            }
+            if (count >= maxToDisplay) break;
         }
     }
+
+    //public void updateLeaderBoardList()
+    //{
+    //    List<dreamloLeaderBoard.Score> scoreList = dl.ToListHighToLow();
+    //    if (scoreList == null)
+    //    {
+    //        //GUILayout.Label("(loading...)");
+    //    }
+    //    else
+    //    {
+    //        foreach (Transform child in leaderboardList)
+    //        {
+    //            child.gameObject.SetActive(false);
+    //           // GameObject.Destroy(child.gameObject);
+    //        }
+    //        int maxToDisplay = leaderboardList.childCount;
+    //        int count = 0;
+    //        foreach (dreamloLeaderBoard.Score currentScore in scoreList)
+    //        {
+    //            var row = leaderboardList.GetChild(count).gameObject;
+    //            row.SetActive(true);
+    //            row.GetComponent<LeaderBoardRow>().score.text = currentScore.score.ToString();
+    //            row.GetComponent<LeaderBoardRow>().Name.text = currentScore.playerName;
+
+
+    //            count++;
+    //            //GUILayout.BeginHorizontal();
+    //            //GUILayout.Label(currentScore.playerName, width200);
+    //            //GUILayout.Label(currentScore.score.ToString(), width200);
+    //            //GUILayout.EndHorizontal();
+
+    //            if (count >= maxToDisplay) break;
+    //        }
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()

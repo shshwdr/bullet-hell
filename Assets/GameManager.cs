@@ -62,13 +62,22 @@ public class GameManager : Singleton<GameManager>
         HUD.Instance.updateHealth(currentPlayerHealth);
         HUD.Instance.updateScore(score);
         difficulty = 0;
+
+        FModSoundManager.Instance. setDifficultyParam(0);
         winTime = 0;
+        FModSoundManager.Instance.pressedStart = true;
     }
 
     public void increaseDifficulty()
     {
-        difficulty += 1;
-        HUD.Instance.updateDifficulty();
+        if (difficulty < 4)
+        {
+
+            difficulty += 1;
+
+            FModSoundManager.Instance.setDifficultyParam(difficulty);
+            HUD.Instance.updateDifficulty();
+        }
     }
 
     public bool havePlayedLevel()
@@ -201,7 +210,7 @@ public class GameManager : Singleton<GameManager>
             TutorialManager.Instance.finishLevel();
         }
         HUD.Instance.updateIntervalLevel();
-
+        FModSoundManager.Instance.Pause();
 
         yield return new WaitForSecondsRealtime(1);
         if (currentPlayerHealth == 0)
