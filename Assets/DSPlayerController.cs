@@ -21,6 +21,7 @@ public class DSPlayerController : HPCharacterController
 
 
     [SerializeField] AudioClip outClip;
+    [SerializeField] List<AudioClip> moveClips;
 
 
     [SerializeField] GameObject drunkEffect;
@@ -232,6 +233,7 @@ public class DSPlayerController : HPCharacterController
         }
         if (Input.GetMouseButtonDown(0))
         {
+            //audioSource.PlayOneShot(moveClips[0]);
             currentActionTime = 0;
             if (TutorialManager.Instance.isInTutorial)
             {
@@ -313,11 +315,11 @@ public class DSPlayerController : HPCharacterController
                 bulletManager.isStopped = false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            sequence.Kill();
-            Time.timeScale = 1;
-        }
+        //else if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    sequence.Kill();
+        //    Time.timeScale = 1;
+        //}
     }
     IEnumerator slowDown()
     {
@@ -330,10 +332,10 @@ public class DSPlayerController : HPCharacterController
         Time.fixedDeltaTime = Time.timeScale * 0.01f;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        audioSource.PlayOneShot(bounceClip);
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    audioSource.PlayOneShot(bounceClip);
+    //}
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.tag == "Wound" && GameManager.Instance.currentLevel is PairLevelManager)

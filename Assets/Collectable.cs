@@ -54,6 +54,7 @@ public class Collectable : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player" && !hasTriggered)
         {
+            hasTriggered = true;
             CollectionGeneration.Instance.generate();
             CollectionGeneration.Instance.collect();
             if (shouldDestory)
@@ -74,7 +75,6 @@ public class Collectable : MonoBehaviour
                 }
 
                 GetComponent<SpriteRenderer>().color = Color.white;
-                hasTriggered = false;
                 this.enabled = false;
 
 

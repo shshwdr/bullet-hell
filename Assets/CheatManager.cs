@@ -21,30 +21,30 @@ public class CheatManager : Singleton<CheatManager>
     // Update is called once per frame
     void Update()
     {
-        for (int i = 1; i <=6; ++i)
-        {
-            if (Input.GetKeyDown("" + i))
-            {
-                nextLevel = i;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GameManager.Instance.currentPlayerHealth += 1;
-            HUD.Instance.updateHealth(GameManager.Instance.currentPlayerHealth);
-        }
-        //if (Input.GetKeyDown(KeyCode.L))
+        //for (int i = 1; i <=6; ++i)
         //{
-        //    infiniteHPInLevel = true;
+        //    if (Input.GetKeyDown("" + i))
+        //    {
+        //        nextLevel = i;
+        //    }
         //}
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            GameManager.Instance.currentLevel.succeedLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            GameManager.Instance.currentLevel.failedLevel();
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    GameManager.Instance.currentPlayerHealth += 1;
+        //    HUD.Instance.updateHealth(GameManager.Instance.currentPlayerHealth);
+        //}
+        ////if (Input.GetKeyDown(KeyCode.L))
+        ////{
+        ////    infiniteHPInLevel = true;
+        ////}
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    GameManager.Instance.currentLevel.succeedLevel();
+        //}
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    GameManager.Instance.currentLevel.failedLevel();
+        //}
 
     }
 }

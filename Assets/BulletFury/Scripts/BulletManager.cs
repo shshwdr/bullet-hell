@@ -14,7 +14,6 @@ namespace BulletFury
     {
 
         AudioSource audioSource;
-        [SerializeField] AudioClip shootClip;
         #region Serialized Fields
         // <----- Serialized Fields ----->
         // the maximum amount of bullets this bullet manager can show
@@ -240,7 +239,7 @@ namespace BulletFury
         public void playShootSound()
         {
 
-            audioSource.Play();
+            audioSource.PlayOneShot(GetComponent<Demo.TestWeapon>().shootClip);
         }
         private IEnumerator SpawnIE(Vector3 position, Vector3 forward)
         {
@@ -253,16 +252,16 @@ namespace BulletFury
             for (int burstNum = 0; burstNum < spawnSettings.BurstCount; ++burstNum)
             {
                 transform.DOShakeScale(0.3f, 0.9f);
-                var t = new BulletContainer
-                {
-                };
-                OnBulletSpawned?.Invoke(t);
                 // wait a little bit before doing the next burst
                 yield return new WaitForSeconds(spawnSettings.BurstDelay);
                 // make sure the positions and rotations are clear before doing anything
                 positions.Clear();
                 rotations.Clear();
-                
+
+                var t = new BulletContainer
+                {
+                };
+                OnBulletSpawned?.Invoke(t);
                 // spawn the bullets
                 spawnSettings.Spawn((point, dir) =>
                 {

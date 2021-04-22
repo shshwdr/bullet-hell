@@ -267,6 +267,8 @@ MonoBehaviour:
   oilEffect: {fileID: 6988886158461779768}
   oilSlowDown: 0.4
   outClip: {fileID: 8300000, guid: b4c82b60a9d57b7479027526d0446534, type: 3}
+  moveClips:
+  - {fileID: 8300000, guid: 4f3333c97f6c0774f8816ed87ee992ee, type: 3}
   drunkEffect: {fileID: 8050859070981883452}
   redBloodSprite: {fileID: 0}
   arrowSprite: {fileID: 25672646}

@@ -60,6 +60,7 @@ public class GameManager : Singleton<GameManager>
         currentPlayerHealth = playerHealth;
         score = 0;
         successedLevel = 0;
+        isLevelPlayed = new Dictionary<int, bool>();
         SelectLevelAndStart();
         finishedLevel = true;
         HUD.Instance.updateHealth(currentPlayerHealth);

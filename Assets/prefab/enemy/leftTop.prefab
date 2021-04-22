@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b3b583b5c6d4f4cab32fe763227ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootClip: {fileID: 0}
   maxBullets: 120
   drawPriority: 100
   isStopped: 1
@@ -181,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletManager: {fileID: 8545906478726001037}
   rotateSpeed: 0
+  shootClip: {fileID: 8300000, guid: b6ff1f56fa4f07648a3fca8b22a51e15, type: 3}
 --- !u!82 &-3849499877238946865
 AudioSource:
   m_ObjectHideFlags: 0

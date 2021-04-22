@@ -36,6 +36,10 @@ public class DSEnemyController : HPCharacterController
 
     protected override void Die()
     {
+        if (isDead)
+        {
+            return;
+        }
         base.Die();
         audioSource.Play();
         live.SetActive(false);

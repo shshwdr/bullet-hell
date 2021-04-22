@@ -23,7 +23,7 @@ public class Dialogs : MonoBehaviour
 
     static public string devourLevelName = "Cell Mutation";
     static public string devourLevelIntroduction = "You are a Macrophage, a type of white blood cell. Macrophages can touch mutated cells to <color=red>destroy them</color>.";
-    static public string devourLevelTarget = "Devour {0} Cell"+ progress;
+    static public string devourLevelTarget = "Destroy {0} Cell"+ progress;
 
     static public string fixLevelName = "Wounded";
     static public string fixLevelIntroduction = "You are a Platelet. Multiple platelets combine into a blood clot to <color=red>seal a wound</color>";
@@ -39,10 +39,10 @@ public class Dialogs : MonoBehaviour
 
     static public List<string> tutorialStrings = new List<string>()
     {
-        "<color=yellow>Left click</color> to move. Your goal here is to collect oxygen while avoiding the virus' bullets. Each type of level has a different goal. You only have <color=yellow>10 seconds</color> to complete each level - but time is slowed when you stand still!",
-        "<color=yellow>Right click</color> to shoot. Your goal is to kill the virus while avoiding the virus' bullets.",
-        "<color=yellow>Move</color> to the mutated cell to destroy it. Avoid the bullets it will shoot at you!",
-        "You need to <color=yellow>control both platelets</color> at the same time, to guide them both toward the wound. Don't let any of them get shot!",
+        "<color=red>Left click</color> to move. Your goal here is to collect oxygen while avoiding the virus' bullets. Each type of level has a different goal. You only have <color=red>10 seconds</color> to complete each level - but time is slowed when you stand still!",
+        "<color=red>Right click</color> to shoot. Your goal is to kill the <color=green>green virus</color> while avoiding the yellow virus' bullets.",
+        "<color=red>Move</color> to the mutated cell to destroy it. Avoid the bullets it will shoot at you!",
+        "You need to <color=red>control both platelets</color> at the same time, to guide them both toward the wound. Don't let any of them get shot!",
 
     };
 

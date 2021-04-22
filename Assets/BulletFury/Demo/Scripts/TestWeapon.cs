@@ -7,7 +7,8 @@ namespace BulletFury.Demo
     {
         [SerializeField] private BulletManager bulletManager = null;
         [SerializeField] private float rotateSpeed = 0f;
-        
+        public AudioClip shootClip;
+
         private void Update()
         {
             if (bulletManager == null)

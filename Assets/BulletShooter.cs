@@ -7,7 +7,9 @@ public class BulletShooter : MonoBehaviour
     AudioSource audioSource;
     DevourLevelManager manager;
     [SerializeField] GameObject live;
+    [SerializeField] AudioClip dieSound;
     [SerializeField] GameObject deathAnim;
+    bool isTriggered = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,21 +24,25 @@ public class BulletShooter : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && manager)
+        if (!isTriggered)
         {
-            manager.collect();
-            GetComponent<BulletFury.BulletManager>().isStopped = true;
-            GetComponent<BulletFury.BulletManager>().enabled = false;
-            transform.GetChild(0).gameObject.SetActive(false);
-            audioSource.Play();
+            isTriggered = true;
+            if (collision.tag == "Player" && manager)
+            {
+                manager.collect();
+                GetComponent<BulletFury.BulletManager>().isStopped = true;
+                GetComponent<BulletFury.BulletManager>().enabled = false;
+                transform.GetChild(0).gameObject.SetActive(false);
+                audioSource.PlayOneShot(dieSound);
 
-            live.SetActive(false);
-            deathAnim.SetActive(true);
-            deathAnim.transform.position = live.gameObject.transform.position;
-            deathAnim.transform.rotation = live.transform.rotation;
-            deathAnim.transform.localScale = live.transform.localScale;
+                live.SetActive(false);
+                deathAnim.SetActive(true);
+                deathAnim.transform.position = live.gameObject.transform.position;
+                deathAnim.transform.rotation = live.transform.rotation;
+                deathAnim.transform.localScale = live.transform.localScale;
 
 
+            }
         }
     }
 }

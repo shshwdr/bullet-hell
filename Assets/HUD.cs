@@ -18,6 +18,7 @@ public class HUD : Singleton<HUD>
     public LevelManager levelManager;
 
     [SerializeField] TMP_Text tutorialLabel;
+    [SerializeField] GameObject tutorialPanel;
 
     //for new level
 
@@ -33,6 +34,8 @@ public class HUD : Singleton<HUD>
     [SerializeField] GameObject lossMenu;
     [SerializeField] TMP_Text intervalLabel;
     [SerializeField] TMP_Text difficultyLabel;
+
+    [SerializeField] List<GameObject> hearts;
 
     int currentPunch = 5;
 
@@ -77,10 +80,20 @@ public class HUD : Singleton<HUD>
 
     public void updateHealth(int currentTime)
     {
-        if (healthLabel)
+        if (hearts!=null)
         {
-            healthLabel.text = "Health: " + currentTime;
-            healthLabel.transform.DOPunchScale(new Vector3(0.5f, 0.2f, 0.2f), 0.2f).SetUpdate(true);
+            int i = 0;
+            for(i = 0;i< currentTime; i++)
+            {
+                hearts[i].SetActive(true);
+            }
+            for(;i< hearts.Count; i++)
+            {
+
+                hearts[i].SetActive(false);
+            }
+            //healthLabel.text = "Health: " + currentTime;
+            //healthLabel.transform.DOPunchScale(new Vector3(0.5f, 0.2f, 0.2f), 0.2f).SetUpdate(true);
 
         }
         else
@@ -218,7 +231,7 @@ public class HUD : Singleton<HUD>
     {
         if (tutorialLabel)
         {
-
+            tutorialPanel.SetActive(false);
             tutorialLabel.text = "";
 
         }
@@ -229,7 +242,7 @@ public class HUD : Singleton<HUD>
         {
             if (TutorialManager.Instance.isInTutorial)
             {
-
+                tutorialPanel.SetActive(true);
                 tutorialLabel.text = Dialogs.tutorialStrings[TutorialManager.Instance.currentTutorialId];
             }
 
